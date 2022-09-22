@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import { LoginPage } from "./pages/LoginPage";
-import { RegisterPage } from "./pages/RegisterPage";
-import { EditUserPage } from "./pages/EditUerPage";
-import { ProfilePage } from "./pages/ProfilePage";
+import { LoginPage } from "../pages/LoginPage";
+import { RegisterPage } from "../pages/RegisterPage";
+import { EditUserPage } from "../pages/EditUerPage";
+import { ProfilePage } from "../pages/ProfilePage";
 import { TimeLine } from "../pages/TimeLine";
 
 export const Main = () => {
