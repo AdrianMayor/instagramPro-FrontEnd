@@ -105,6 +105,7 @@ export const userProfileServices = async ({idUser}) => {
   
   return response.data;
 }
+
 export const getUser = async ({ idUser }) => {
   try {
     const { data } = await axios.get(
