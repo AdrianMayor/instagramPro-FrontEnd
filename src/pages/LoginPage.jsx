@@ -1,11 +1,16 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AuthContext } from '../context/authContext';
 import { services } from '../services';
+import { useNavigate } from 'react-router-dom';
+
 
 export const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
+    const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleLoginUserForm = async (e) => {
         e.preventDefault();
@@ -13,14 +18,16 @@ export const LoginPage = () => {
         setMessage('');
         try {
             const response = await services.users.loginUserService({ email, password })
+            if (response.name && response.name === 'AxiosError') {
+                setError(response.response.data.message)
+            } else {
+                setMessage('Usuario logueado correctamente');
+                login(response.data.token);
+                navigate('/')
+            }
 
-            response.name && response.name === 'AxiosError' ?
-                setError(response.response.data.message) :
-                setMessage('Usuario logueado correctamente')
-            const token = response.data.token;
-            localStorage.setItem('token', token);
         } catch (error) {
-            setError(error.response.data.message)
+            setError(error.message)
         }
     }
 

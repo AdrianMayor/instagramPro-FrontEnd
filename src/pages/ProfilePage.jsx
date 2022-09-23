@@ -1,24 +1,21 @@
 import { useOwnUser } from '../hooks/useOwnUser';
 import { PhotoUserList } from '../components/PhotoUserList'
-export const ProfilePage = () => {
+import { Link } from 'react-router-dom'
+import { PhotoProfile } from '../components/PhotoProfile';
+import { LoadDataWaiting } from '../components/LoadDataWaiting';
 
+export const ProfilePage = () => {
     const { user, userPhotos, loading, error } = useOwnUser();
 
-    if (loading) return <p>Cargando datos...</p>;
-    if (error) return <p>error</p>
+    if (loading) return <LoadDataWaiting></LoadDataWaiting>
+    if (error) return <p>{error}</p>
 
     return (
         <section>
             <h1>{user.username}</h1>
-            {user.avatar ?
-                (<img
-                    src={`${process.env.REACT_APP_SERVER}/${user.avatar}`}
-                    alt='avatar'>
-                </img>
-                ) : (
-                    null
-                )}
+            <PhotoProfile user={user}></PhotoProfile>
             <p>Desde: {new Date(user.createdAt).toLocaleString()}</p>
+            <Link to='/edit'>Edit</Link>
             {userPhotos.length > 1 ? (
                 <PhotoUserList userPhotos={userPhotos}></PhotoUserList>
             ) : null
