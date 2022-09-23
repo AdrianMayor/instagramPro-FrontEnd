@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { services } from '../services';
+import { AuthContext } from '../context/authContext';
+import { useNavigate } from 'react-router-dom';
 
 export const EditUserPage = () => {
 
@@ -8,24 +10,34 @@ export const EditUserPage = () => {
     const [avatar, setAvatar] = useState('');
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
+    const [confirm, setConfirm] = useState(false);
+    const { token, setUser } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleEditUser = async (e) => {
         e.preventDefault();
         setError('');
         setMessage('');
-
-        try {
-            const response = await services.users.editUserService({
-                username,
-                email,
-                avatar
-            })
-            response.name && response.name === 'AxiosError' ?
-                setError(response.response.data.message) :
-                setMessage(response.message)
-        } catch (error) {
-            setError(error.message);
+        if (confirm) {
+            try {
+                const response = await services.users.editUserService({
+                    token,
+                    username,
+                    email,
+                    avatar
+                })
+                response.name && response.name === 'AxiosError' ?
+                    setError(response.response.data.message) :
+                    setMessage(response.message)
+                navigate('/')
+                setUser(null)
+            } catch (error) {
+                setError(error.message);
+            }
+        } else {
+            setMessage('need confirm the changes')
         }
+
     }
     return (
         <section>
@@ -53,6 +65,10 @@ export const EditUserPage = () => {
                         onChange={(e) => setAvatar(e.target.files[0])}>
                     </input>
                 </fieldset>
+                <p>Confirm the changes
+                    <input type='checkbox' placeholder='Confirm the changes' onClick={() => setConfirm(true)} />
+                </p>
+
                 <button>Editar usuario</button>
             </form>
             {error ? <p>{error}</p> : <p>{message}</p>}

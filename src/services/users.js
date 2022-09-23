@@ -25,11 +25,10 @@ export const registerUserService = async ({
 export const loginUserService = async ({ 
   email, 
   password
-  } = {}) => {
-    if (!email || !password)
-
-      throw new Error("All params are required");
+  }) => {
+    if (!email || !password) throw new Error("All params are required");
     try {
+     
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER}/users/login`,
         {email, password},
@@ -47,6 +46,7 @@ export const loginUserService = async ({
 
 
 export const editUserService = async ({
+  token,
   username, 
   email, 
   avatar
@@ -62,7 +62,7 @@ export const editUserService = async ({
       
       const response = await axios.put(`${process.env.REACT_APP_SERVER}/users`, form, { 
         headers: {
-          Authorization: process.env.REACT_APP_TOKEN,
+          Authorization: token,
         }
       })
           return response.data;
@@ -84,17 +84,18 @@ export const userIdProfileServices = async ({idUser}) => {
   }
 }
 
-export const ownUserProfileServices = async () => {
+export const ownUserProfileServices = async ({token}) => {
     const response = await axios.get(
       `${process.env.REACT_APP_SERVER}/users/`,{
         headers: {
-          Authorization: process.env.REACT_APP_TOKEN,
+          Authorization: token,
         }
       }
     )
     if(response.status !== 200)  throw new Error(response.message)
     return response.data;
 }
+
 
 export const userProfileServices = async ({idUser}) => {
   const response = await axios.get(
