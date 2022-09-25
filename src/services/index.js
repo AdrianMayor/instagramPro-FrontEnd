@@ -6,7 +6,16 @@ import {
   sendCommentToEntry,
   viewEntryComments,
 } from "./entries";
-import { getUser } from "./users";
+
+import { 
+    getUser,
+    registerUserService, 
+    loginUserService, 
+    editUserService, 
+    userIdProfileServices, 
+    ownUserProfileServices, 
+    userProfileServices 
+} from "./users";
 
 export const services = {
   entries: {
@@ -19,5 +28,11 @@ export const services = {
   },
   users: {
     getUser,
+    registerUserService,
+    loginUserService,
+    editUserService,
+    userIdProfileServices,
+    ownUserProfileServices,
+    userProfileServices
   },
 };
