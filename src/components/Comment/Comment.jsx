@@ -1,5 +1,5 @@
-import SpinnerIcon from "../../assets/icons/loadingIcon.svg";
 import { useGetUser } from "../../hooks/useGetUser";
+import { Loading } from "../Loading/Loading";
 
 export const Comment = ({ comment }) => {
   const { user, loading } = useGetUser({
@@ -16,6 +16,6 @@ export const Comment = ({ comment }) => {
       <p>{comment.comment}</p>
     </>
   ) : (
-    <img src={SpinnerIcon} alt="loadingIcon"></img>
+    <Loading />
   );
 };
