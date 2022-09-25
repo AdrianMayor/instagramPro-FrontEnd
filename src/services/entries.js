@@ -3,11 +3,12 @@ import axios from "axios";
 // Funcion destinada a crear una entrada
 
 export const newEntry = async ({ post }) => {
+  console.log(post);
   try {
     const FormData = require("form-data");
 
     const entry = new FormData();
-    post?.description && entry.append("description", entry.description);
+    post.description && entry.append("description", post.description);
     post.images?.map((item, index) => entry.append(`image-${index}`, item));
 
     const response = await axios.post(
@@ -30,6 +31,7 @@ export const newEntry = async ({ post }) => {
 // Funcion destinada a enviar un comentario a una entrada
 
 export const sendCommentToEntry = async ({ comment, idEntry }) => {
+  console.log(comment);
   try {
     const response = await axios.post(
       `${process.env.REACT_APP_SERVER}/entries/${idEntry}/comment`,
@@ -73,9 +75,16 @@ export const likeAnEntry = async ({ idEntry }) => {
 export const listEntries = async ({ keyword, page, limit }) => {
   try {
     const { data } = await axios.get(
-      `${process.env.REACT_APP_SERVER}/entries` /* ?keyword=${keyword}&page=${
-        page !== undefined ? `${page}` : ""
-      }&limit=${limit !== undefined ? `${limit}` : ""}` */
+      `${process.env.REACT_APP_SERVER}/entries?keyword=${
+        keyword !== undefined ? `${keyword}` : ""
+      }&page=${page !== undefined ? `${page}` : ""}&limit=${
+        limit !== undefined ? `${limit}` : ""
+      }`,
+      {
+        headers: {
+          Authorization: process.env.REACT_APP_TOKEN,
+        },
+      }
     );
     return data;
   } catch (err) {
@@ -115,7 +124,6 @@ export const getOwnPhotos = async ({ page, limit }) => {
 // Funcion destinada a recuperar los comentarios de una entrada
 
 export const viewEntryComments = async ({ idEntry, page, limit }) => {
-  console.log();
   try {
     const { data } = await axios.get(
       `${process.env.REACT_APP_SERVER}/entries/${idEntry}/comment?page=${
