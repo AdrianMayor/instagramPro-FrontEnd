@@ -1,19 +1,32 @@
-import SpinnerIcon from "../../assets/icons/loadingIcon.svg";
+import { Loading } from "../Loading/Loading";
 import { PostCard } from "../PostCard/PostCard";
 
-export const PostList = ({ loading, posts }) => {
+export const PostList = ({
+  totalPosts,
+  loading,
+  pagination,
+  index,
+  handleClick,
+  token,
+}) => {
   return (
     <section>
       {loading === false ? (
-        <ul>
-          {posts.data.entries.map((post) => (
-            <li key={post.entryId}>
-              <PostCard post={post}></PostCard>
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul>
+            {totalPosts.length >= 1 &&
+              totalPosts.map((post) => (
+                <li key={post.entryId}>
+                  <PostCard post={post} token={token} />
+                </li>
+              ))}
+          </ul>
+          {pagination.page !== index?.lastPage && (
+            <button onClick={handleClick}>See more results</button>
+          )}
+        </>
       ) : (
-        <img src={SpinnerIcon} alt="loadingIcon"></img>
+        <Loading />
       )}
     </section>
   );
