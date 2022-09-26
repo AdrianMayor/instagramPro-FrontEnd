@@ -4,7 +4,9 @@ export const Header = () => {
     return (
         <>
             <Link to='/'>
-                <h1>Intagram-Pro</h1>
+                <h1 className='titleApp'>Intagram
+                    <sub className='subTitleApp'>Pro</sub>
+                </h1>
             </Link>
             <nav>
                 <AuthLinks></AuthLinks>

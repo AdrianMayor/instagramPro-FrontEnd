@@ -1,5 +1,4 @@
 export const PhotoUserList = ({ userPhotos }) => {
-
     return (
         userPhotos.length ?
             <ul>
@@ -7,8 +6,7 @@ export const PhotoUserList = ({ userPhotos }) => {
                     <li key={userPhoto.photoId}>
                         <img
                             src={`${process.env.REACT_APP_SERVER}/${userPhoto.photoName}`}
-                            alt='listElement'>
-
+                            alt={userPhotos.photoId}>
                         </img>
                     </li>
                 )}

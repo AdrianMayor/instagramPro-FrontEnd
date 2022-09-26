@@ -72,16 +72,15 @@ export const editUserService = async ({
 }
 
 
-export const userIdProfileServices = async ({idUser}) => {
-  try {
+export const userIdProfileServices = async (idUser) => {
     const response = await axios.get(
       `${process.env.REACT_APP_SERVER}/users/${idUser}`,
-    )
-    return response;
+    );
+
+    if(response.status !== 200) throw new Error (response.message);
+
+    return response.data;
     
-  } catch (error){
-      return error;
-  }
 }
 
 export const ownUserProfileServices = async ({token}) => {
