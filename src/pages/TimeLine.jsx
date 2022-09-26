@@ -47,7 +47,11 @@ export const TimeLine = () => {
     <>
       <SearchBar resetInput={keyword} />
       {token && (
-        <NewPostBox totalPosts={totalPosts} setTotalPosts={setTotalPosts} />
+        <NewPostBox
+          totalPosts={totalPosts}
+          setTotalPosts={setTotalPosts}
+          token={token}
+        />
       )}
       <PostList
         totalPosts={totalPosts}
