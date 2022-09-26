@@ -7,6 +7,7 @@ export const CommentBox = ({
   idEntry,
   totalComments,
   singlePost,
+  token,
 }) => {
   const [postComments, setPostComments] = useState([]);
   const [commentIndex, setCommentIndex] = useState(null);
@@ -23,6 +24,7 @@ export const CommentBox = ({
       const data = await services.entries.viewEntryComments({
         idEntry,
         page: commentIndex,
+        token,
       });
       postComments.length === 3 || singlePost
         ? setPostComments(data.data.entryComments)
@@ -41,6 +43,7 @@ export const CommentBox = ({
     const data = await services.entries.sendCommentToEntry({
       comment: newComment,
       idEntry,
+      token,
     });
 
     refreshComments({ limit });
@@ -51,6 +54,7 @@ export const CommentBox = ({
     const refreshComments = await services.entries.viewEntryComments({
       idEntry,
       limit,
+      token,
     });
 
     setPostComments(refreshComments.data.entryComments);
@@ -59,14 +63,16 @@ export const CommentBox = ({
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="newComment"
-          placeholder="Share your thoughts"
-        ></input>
-        <button>Send</button>
-      </form>
+      {token && (
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="newComment"
+            placeholder="Share your thoughts"
+          ></input>
+          <button>Send</button>
+        </form>
+      )}
       <ul className="postCard__commentBox">
         {postComments.length >= 1 ? (
           postComments.map((comment) => (

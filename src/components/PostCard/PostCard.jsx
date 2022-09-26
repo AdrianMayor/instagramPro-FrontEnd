@@ -5,7 +5,7 @@ import { ImagesBox } from "../ImagesBox/ImagesBox";
 import { LikeAndCommentMenu } from "../LikeAndCommentMenu/LikeAndCommentMenu";
 import { PostCardHeader } from "../PostCardHeader/PostCardHeader";
 
-export const PostCard = ({ post, singlePost }) => {
+export const PostCard = ({ post, singlePost, token }) => {
   const [isSinglePost, setSinglePost] = useState(false);
 
   useEffect(() => {
@@ -56,6 +56,7 @@ export const PostCard = ({ post, singlePost }) => {
           totalComments={post.totalComments}
           idEntry={post.entryId}
           likedByMe={post.likedByMe}
+          token={token}
         />
       </div>
 
@@ -65,6 +66,7 @@ export const PostCard = ({ post, singlePost }) => {
           idEntry={post.entryId}
           totalComments={post.totalComments}
           singlePost={isSinglePost}
+          token={token}
         />
       </footer>
     </article>

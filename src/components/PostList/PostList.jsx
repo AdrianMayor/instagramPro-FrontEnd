@@ -7,6 +7,7 @@ export const PostList = ({
   pagination,
   index,
   handleClick,
+  token,
 }) => {
   return (
     <section>
@@ -16,7 +17,7 @@ export const PostList = ({
             {totalPosts.length >= 1 &&
               totalPosts.map((post) => (
                 <li key={post.entryId}>
-                  <PostCard post={post} />
+                  <PostCard post={post} token={token} />
                 </li>
               ))}
           </ul>

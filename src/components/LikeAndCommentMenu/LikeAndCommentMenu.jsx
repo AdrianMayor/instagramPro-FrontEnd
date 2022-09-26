@@ -6,12 +6,18 @@ export const LikeAndCommentMenu = ({
   totalComments,
   idEntry,
   likedByMe,
+  token,
 }) => {
   const [liked, setLiked] = useState(undefined);
   const handleLikeButton = async () => {
-    const { data } = await services.entries.likeAnEntry({ idEntry });
+    try {
+      if (!token) throw new Error("Must be logged");
+      const { data } = await services.entries.likeAnEntry({ idEntry, token });
 
-    data.message === "Disliked" ? setLiked(false) : setLiked(true);
+      data.message === "Disliked" ? setLiked(false) : setLiked(true);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {

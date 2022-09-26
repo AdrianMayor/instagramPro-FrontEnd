@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { NewPostBox } from "../components/NewPostBox/NewPostBox";
 import { PostList } from "../components/PostList/PostList";
 import { SearchBar } from "../components/SearchBar/SearchBar";
+import { AuthContext } from "../context/authContext";
 import { usePosts } from "../hooks/usePosts";
 
 export const TimeLine = () => {
+  const { token } = useContext(AuthContext);
   const { keyword } = useParams();
   const [totalPosts, setTotalPosts] = useState([]);
 
@@ -21,6 +23,9 @@ export const TimeLine = () => {
   useEffect(() => {
     if (keyword !== undefined) {
       setPagination({ ...pagination, ...{ keyword: keyword } });
+      setTotalPosts([]);
+    } else if (keyword === undefined && pagination.keyword !== "") {
+      setPagination({ ...pagination, ...{ keyword: "" } });
       setTotalPosts([]);
     }
   }, [keyword]);
@@ -40,16 +45,18 @@ export const TimeLine = () => {
 
   return (
     <>
-      <SearchBar setTotalPosts={setTotalPosts} />
-      <NewPostBox totalPosts={totalPosts} setTotalPosts={setTotalPosts} />
+      <SearchBar resetInput={keyword} />
+      {token && (
+        <NewPostBox totalPosts={totalPosts} setTotalPosts={setTotalPosts} />
+      )}
       <PostList
         totalPosts={totalPosts}
         loading={loading}
         pagination={pagination}
         index={index}
         handleClick={handleClick}
+        token={token}
       />
-      ;
     </>
   );
 };
