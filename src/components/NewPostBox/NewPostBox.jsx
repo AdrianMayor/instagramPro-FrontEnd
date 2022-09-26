@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { services } from "../../services";
 
-export const NewPostBox = ({ totalPosts, setTotalPosts }) => {
+export const NewPostBox = ({ totalPosts, setTotalPosts, token }) => {
   const [images, setImages] = useState([]);
 
   const handleOnChange = ({ value }) => {
@@ -24,7 +24,7 @@ export const NewPostBox = ({ totalPosts, setTotalPosts }) => {
       post = { ...post, images };
 
       const sendPost = async () => {
-        const response = await services.entries.newEntry({ post });
+        const response = await services.entries.newEntry({ post, token });
         setTotalPosts([response.data.data.entry, ...totalPosts]);
 
         setImages([]);

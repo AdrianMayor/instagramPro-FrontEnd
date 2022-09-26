@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import { SinglePost } from "../components/SinglePost/SinglePost";
-import { LoginPage } from "../pages/LoginPage";
-import { RegisterPage } from "../pages/RegisterPage";
 import { EditUserPage } from "../pages/EditUerPage";
+import { LoginPage } from "../pages/LoginPage";
 import { ProfilePage } from "../pages/ProfilePage";
+import { RegisterPage } from "../pages/RegisterPage";
+import { SinglePost } from "../pages/SinglePost";
 
 import { TimeLine } from "../pages/TimeLine";
 import { ProfileUserPage } from "../pages/ProfileUserPage";

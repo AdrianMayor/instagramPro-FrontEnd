@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../../context/authContext";
-import { services } from "../../services";
-import { PostCard } from "../PostCard/PostCard";
+import { PostCard } from "../components/PostCard/PostCard";
+import { AuthContext } from "../context/authContext";
+import { services } from "../services";
 
 export const SinglePost = () => {
   const { token } = useContext(AuthContext);
