@@ -7,14 +7,13 @@ import {
   viewEntryComments,
 } from "./entries";
 
-import { 
-    getUser,
-    registerUserService, 
-    loginUserService, 
-    editUserService, 
-    userIdProfileServices, 
-    ownUserProfileServices, 
-    userProfileServices 
+import {
+  editUserService,
+  getUser,
+  loginUserService,
+  ownUserProfileServices,
+  registerUserService,
+  userIdProfileServices,
 } from "./users";
 
 export const services = {
@@ -33,6 +32,5 @@ export const services = {
     editUserService,
     userIdProfileServices,
     ownUserProfileServices,
-    userProfileServices
   },
 };
