@@ -1,25 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export const SearchBar = ({ setTotalPosts }) => {
-  const [keyword, setKeyword] = useState();
-  const handleSubmit = (e) => {
-    e.preventDefault();
+export const SearchBar = ({ resetInput }) => {
+  const [keyword, setKeyword] = useState("");
 
-    const value = e.target.elements.keyword.value;
+  useEffect(() => {
+    /*     console.log(keyword);
+    console.log(resetInput); */
+    if (resetInput === undefined) setKeyword("");
+  }, [resetInput]);
 
-    setKeyword(value);
-
-    e.target.reset();
-    console.log(keyword);
-  };
-
-  const handleChange = (e) => {
-    setKeyword(e.target.value);
-  };
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="keyword" onChange={handleChange}></input>
+    <form>
+      <input
+        type="text"
+        name="keyword"
+        onChange={(e) => setKeyword(e.target.value)}
+        value={keyword}
+      ></input>
       <Link to={`/${keyword}`}>
         {" "}
         <button>Search</button>

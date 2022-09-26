@@ -11,24 +11,30 @@ export const NewPostBox = ({ totalPosts, setTotalPosts }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const description = e.target.elements.description.value;
+    try {
+      const description = e.target.elements.description.value;
 
-    let post = {};
+      let post = {};
 
-    if (description) {
-      post = { description };
+      if (images.length < 1) throw new Error("Must exist at least one photo");
+
+      if (description) {
+        post = { description };
+      }
+      post = { ...post, images };
+
+      const sendPost = async () => {
+        const response = await services.entries.newEntry({ post });
+        setTotalPosts([response.data.data.entry, ...totalPosts]);
+
+        setImages([]);
+      };
+      sendPost();
+
+      e.target.reset();
+    } catch (err) {
+      console.error(err);
     }
-    post = { ...post, images };
-
-    const sendPost = async () => {
-      const response = await services.entries.newEntry({ post });
-      setTotalPosts([response.data.data.entry, ...totalPosts]);
-
-      setImages([]);
-    };
-    sendPost();
-
-    e.target.reset();
   };
 
   return (
@@ -39,7 +45,7 @@ export const NewPostBox = ({ totalPosts, setTotalPosts }) => {
         name="imageA"
         disabled={images.length >= 1}
         onChange={(event) => handleOnChange({ value: event.target.files[0] })}
-      />
+      />{" "}
       {images.length >= 1 && (
         <input
           type="file"
@@ -56,7 +62,6 @@ export const NewPostBox = ({ totalPosts, setTotalPosts }) => {
           onChange={(event) => handleOnChange({ value: event.target.files[0] })}
         />
       )}
-
       {images.length >= 3 && (
         <input
           type="file"
@@ -65,7 +70,9 @@ export const NewPostBox = ({ totalPosts, setTotalPosts }) => {
           onChange={(event) => handleOnChange({ value: event.target.files[0] })}
         />
       )}
-
+      {images.length > 1 && (
+        <button onClick={() => setImages([])}>Clear photos</button>
+      )}
       <input type="text" name="description" />
       <button>Send</button>
     </form>

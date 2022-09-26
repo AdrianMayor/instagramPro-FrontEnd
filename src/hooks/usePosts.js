@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/authContext";
 import { services } from "../services";
 
 export const usePosts = () => {
@@ -6,17 +7,17 @@ export const usePosts = () => {
   const [index, setIndex] = useState({ lastPage: 1 });
   const [keys, setKeys] = useState({ keyword: "", limit: 0, page: 0 });
   const [loadingData, setLoadingData] = useState(false);
-
   const [error, setError] = useState("");
+  const { token } = useContext(AuthContext);
 
   useEffect(() => {
     const getPosts = async () => {
       try {
         setLoadingData(true);
-        console.log(keys, index);
+
         let data;
         if (keys.page <= index.lastPage) {
-          data = await services.entries.listEntries(keys);
+          data = await services.entries.listEntries(keys, { token });
 
           setPosts(data.data.entries);
 
@@ -33,17 +34,12 @@ export const usePosts = () => {
     }
   }, [keys]);
 
-  const addPost = ({ data }) => {
-    setPosts([...posts, data]);
-  };
-
   return {
     posts,
     setPosts,
     index,
     setIndex,
     error,
-    addPost,
     loadingData,
     setLoadingData,
     setKeys,
