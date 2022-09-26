@@ -6,6 +6,7 @@ import { EditUserPage } from "../pages/EditUerPage";
 import { ProfilePage } from "../pages/ProfilePage";
 
 import { TimeLine } from "../pages/TimeLine";
+import { ProfileUserPage } from "../pages/ProfileUserPage";
 
 export const Main = () => {
   return (
@@ -17,7 +18,7 @@ export const Main = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/edit" element={<EditUserPage />} />
-        <Route path="/users/:id" element={<p>perfil de usuario</p>} />
+        <Route path="/users/:id" element={<ProfileUserPage />} />
         <Route path="/users" element={<ProfilePage />} />
       </Routes>
     </main>

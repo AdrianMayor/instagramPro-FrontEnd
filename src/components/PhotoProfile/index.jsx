@@ -1,4 +1,5 @@
 import './style.css'
+import DefaultProfilePic from "../../assets/icons/Default_pfp.svg.png";
 import { Link } from 'react-router-dom';
 
 export const PhotoProfile = ({ user }) => {
@@ -9,12 +10,18 @@ export const PhotoProfile = ({ user }) => {
                     <Link to='/users'>
                         <img
                             src={`${process.env.REACT_APP_SERVER}/${user.avatar}`}
-                            alt='avatar'
+                            alt={`avatar of ${user.username}`}
                             className='avatar'>
                         </img>
                     </Link>
                 ) : (
-                    null
+                    <Link to='/users'>
+                        <img
+                            src={DefaultProfilePic}
+                            alt={`avatar of ${user.username}`}
+                            className='avatar'>
+                        </img>
+                    </Link>
                 )}
         </>
     )

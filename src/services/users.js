@@ -65,36 +65,30 @@ export const editUserService = async ({ token, username, email, avatar }) => {
   }
 };
 
-export const userIdProfileServices = async ({ idUser }) => {
-  try {
+
+export const userIdProfileServices = async (idUser) => {
     const response = await axios.get(
-      `${process.env.REACT_APP_SERVER}/users/${idUser}`
+      `${process.env.REACT_APP_SERVER}/users/${idUser}`,
     );
-    return response;
-  } catch (error) {
-    return error;
-  }
-};
 
-export const ownUserProfileServices = async ({ token }) => {
-  const response = await axios.get(`${process.env.REACT_APP_SERVER}/users/`, {
-    headers: {
-      Authorization: token,
-    },
-  });
-  if (response.status !== 200) throw new Error(response.message);
-  return response.data;
-};
+    if(response.status !== 200) throw new Error (response.message);
 
-export const userProfileServices = async ({ idUser }) => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_SERVER}/users/profile/${idUser}`
-  );
+    return response.data;
+    
+}
 
-  if (response.status !== 200) throw new Error(response.message);
+export const ownUserProfileServices = async ({token}) => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER}/users/`,{
+        headers: {
+          Authorization: token,
+        }
+      }
+    )
+    if(response.status !== 200)  throw new Error(response.message)
+    return response.data;
+}
 
-  return response.data;
-};
 
 export const getUser = async ({ idUser, token }) => {
   try {
