@@ -56,7 +56,6 @@ export const likeAnEntry = async ({ idEntry, token }) => {
     const response = await axios.post(
       `${process.env.REACT_APP_SERVER}/entries/${idEntry}/like`,
       "",
-
       {
         headers: {
           Authorization: token,
@@ -80,13 +79,13 @@ export const listEntries = async ({ keyword, page, limit, token }) => {
       }&page=${page !== undefined ? `${page}` : ""}&limit=${
         limit !== undefined ? `${limit}` : ""
       }`,
-      "",
       {
         headers: {
           Authorization: token,
         },
       }
     );
+
     return data;
   } catch (err) {
     console.error(err);
@@ -99,7 +98,6 @@ export const getSingleEntry = async ({ idEntry, token }) => {
   try {
     const { data } = await axios.get(
       `${process.env.REACT_APP_SERVER}/entries/${idEntry}`,
-      "",
       {
         headers: {
           Authorization: token,

@@ -1,0 +1,24 @@
+.postCard__commentBox--profilePic {
+  width: 35px;
+  border-radius: 50%;
+}
+
+.postCard__commentBox--userName {
+  font-weight: bold;
+  display: inline;
+}
+
+.postCard__commentBox--date {
+  /* display: inline; */
+  float: right;
+  font-size: 0.5rem;
+}
+
+.postCard__commentBox--textBox {
+  /*   display: flex;
+  flex-direction: column; */
+  width: 100%;
+}
+.postCard__commentBox--comment {
+  overflow-wrap: break-word;
+}

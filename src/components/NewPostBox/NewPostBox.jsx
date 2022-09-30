@@ -4,6 +4,7 @@ import { services } from "../../services";
 export const NewPostBox = ({ totalPosts, setTotalPosts, token }) => {
   const [images, setImages] = useState([]);
 
+  console.log();
   const handleOnChange = ({ value }) => {
     setImages([...images, value]);
   };
@@ -37,44 +38,104 @@ export const NewPostBox = ({ totalPosts, setTotalPosts, token }) => {
     }
   };
 
+  const handleClearClick = (e) => {
+    e.nativeEvent.path[1].reset();
+    setImages([]);
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        required
-        type="file"
-        name="imageA"
-        disabled={images.length >= 1}
-        onChange={(event) => handleOnChange({ value: event.target.files[0] })}
-      />{" "}
-      {images.length >= 1 && (
+    <section>
+      <form onSubmit={handleSubmit}>
         <input
+          required
           type="file"
-          name="imageB"
-          disabled={images.length >= 2}
+          name="imageA"
+          style={{ display: images.length >= 1 && "none" }}
           onChange={(event) => handleOnChange({ value: event.target.files[0] })}
         />
-      )}
-      {images.length >= 2 && (
-        <input
-          type="file"
-          namne="imageC"
-          disabled={images.length >= 3}
-          onChange={(event) => handleOnChange({ value: event.target.files[0] })}
+        {images.length >= 1 && (
+          <div>
+            <img
+              src={URL.createObjectURL(images[0])}
+              alt="sdf"
+              height="50px"
+            ></img>
+          </div>
+        )}
+
+        {images.length >= 1 && (
+          <input
+            type="file"
+            name="imageB"
+            style={{ display: images.length >= 2 && "none" }}
+            onChange={(event) =>
+              handleOnChange({ value: event.target.files[0] })
+            }
+          />
+        )}
+        {images.length >= 2 && (
+          <div>
+            <img
+              src={URL.createObjectURL(images[1])}
+              alt="sdf"
+              height="50px"
+            ></img>
+          </div>
+        )}
+
+        {images.length >= 2 && (
+          <input
+            type="file"
+            namne="imageC"
+            style={{ display: images.length >= 3 && "none" }}
+            onChange={(event) =>
+              handleOnChange({ value: event.target.files[0] })
+            }
+          />
+        )}
+        {images.length >= 3 && (
+          <div>
+            <img
+              src={URL.createObjectURL(images[2])}
+              alt="sdf"
+              height="50px"
+            ></img>
+          </div>
+        )}
+        {images.length >= 3 && (
+          <input
+            type="file"
+            name="imageD"
+            style={{ display: images.length >= 4 && "none" }}
+            onChange={(event) =>
+              handleOnChange({ value: event.target.files[0] })
+            }
+          />
+        )}
+
+        {images.length >= 4 && (
+          <div>
+            <img
+              src={URL.createObjectURL(images[3])}
+              alt="sdf"
+              height="50px"
+            ></img>
+          </div>
+        )}
+
+        {images.length >= 1 && (
+          <button onClick={(e) => handleClearClick(e)}>Clear photos</button>
+        )}
+        <span>{images.length}/4</span>
+        <textarea
+          maxLength={150}
+          data-limit-row-lent="true"
+          rows={5}
+          name="description"
+          placeholder="Add words to your views!"
         />
-      )}
-      {images.length >= 3 && (
-        <input
-          type="file"
-          name="imageD"
-          disabled={images.length >= 4}
-          onChange={(event) => handleOnChange({ value: event.target.files[0] })}
-        />
-      )}
-      {images.length > 1 && (
-        <button onClick={() => setImages([])}>Clear photos</button>
-      )}
-      <input type="text" name="description" />
-      <button>Send</button>
-    </form>
+        <button>Send</button>
+      </form>
+    </section>
   );
 };

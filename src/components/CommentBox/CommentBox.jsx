@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { services } from "../../services";
 import { Comment } from "../Comment/Comment";
+import "./CommentBox.css";
 
 export const CommentBox = ({
   comments,
@@ -11,7 +12,7 @@ export const CommentBox = ({
 }) => {
   const [postComments, setPostComments] = useState([]);
   const [commentIndex, setCommentIndex] = useState(null);
-
+  console.log(comments);
   useEffect(() => {
     singlePost ? handleClick() : setPostComments(comments);
   }, [comments, singlePost]);
@@ -64,16 +65,26 @@ export const CommentBox = ({
   return (
     <>
       {token && (
-        <form onSubmit={handleSubmit}>
-          <input
+        <form onSubmit={handleSubmit} autoComplete="off">
+          {/*             <input
+              type="text"
+              name="newComment"
+              placeholder="Share your thoughts"
+            ></input> */}
+          <textarea
+            maxLength={150}
+            data-limit-row-lent="true"
+            rows={2}
+            cols={40}
             type="text"
             name="newComment"
             placeholder="Share your thoughts"
-          ></input>
+            autoFocus
+          />
           <button>Send</button>
         </form>
       )}
-      <ul className="postCard__commentBox">
+      <ul className="postCard__commentBox--comments">
         {postComments.length >= 1 ? (
           postComments.map((comment) => (
             <li key={comment.commentId}>
@@ -81,10 +92,10 @@ export const CommentBox = ({
             </li>
           ))
         ) : (
-          <li>No comments</li>
+          <li className="postCard__commentBox--noComments">No comments</li>
         )}
         {totalComments > 3 && (
-          <li>
+          <li className="postCard__commentBox--moreButtons">
             {commentIndex !== "none" && (
               <button onClick={handleClick}>Show more</button>
             )}

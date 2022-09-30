@@ -1,0 +1,17 @@
+.postCard__likeAndCommentMenu {
+  position: absolute;
+  right: 15px;
+  bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.postCard__likeAndCommentMenu li {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.postCard__likeAndCommentMenu button {
+  cursor: pointer;
+}

@@ -1,0 +1,25 @@
+.postCard {
+  margin: 10px auto;
+  overflow: hidden;
+  background-color: black;
+  max-width: 700px;
+  /* min-width: 200px; */
+  border-radius: 10px;
+  transition: all 0.5s;
+  color: white;
+}
+
+.postCard__mainContent--list {
+  position: relative;
+}
+
+.postCard__description {
+  font-size: 0.9rem;
+  inline-size: 71%;
+  height: 15%;
+  position: absolute;
+  overflow: auto;
+  overflow-wrap: break-word;
+  left: 15px;
+  bottom: 17px;
+}
