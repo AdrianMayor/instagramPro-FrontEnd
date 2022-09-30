@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Loading } from "../components/Loading/Loading";
 import { NewPostBox } from "../components/NewPostBox/NewPostBox";
 import { PostList } from "../components/PostList/PostList";
 import { SearchBar } from "../components/SearchBar/SearchBar";
@@ -9,16 +10,13 @@ import { usePosts } from "../hooks/usePosts";
 export const TimeLine = () => {
   const { token } = useContext(AuthContext);
   const { keyword } = useParams();
+  const { posts, index, setKeys, isLoading } = usePosts();
   const [totalPosts, setTotalPosts] = useState([]);
-
-  const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({
     keyword: "",
     limit: 10,
     page: 1,
   });
-
-  const { posts, index, setKeys } = usePosts();
 
   useEffect(() => {
     if (keyword !== undefined) {
@@ -32,11 +30,10 @@ export const TimeLine = () => {
 
   useEffect(() => {
     setKeys(pagination);
-  }, [pagination, setKeys]);
+  }, [pagination]);
 
   useEffect(() => {
     setTotalPosts([...totalPosts, ...posts]);
-    setLoading(false);
   }, [posts]);
 
   const handleClick = () => {
@@ -45,7 +42,7 @@ export const TimeLine = () => {
 
   return (
     <>
-      <SearchBar resetInput={keyword} />
+      <SearchBar />
       {token && (
         <NewPostBox
           totalPosts={totalPosts}
@@ -53,14 +50,15 @@ export const TimeLine = () => {
           token={token}
         />
       )}
+
       <PostList
         totalPosts={totalPosts}
-        loading={loading}
         pagination={pagination}
         index={index}
         handleClick={handleClick}
         token={token}
       />
+      {isLoading && <Loading></Loading>}
     </>
   );
 };

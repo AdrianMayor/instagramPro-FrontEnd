@@ -2,11 +2,11 @@ import { Route, Routes } from "react-router-dom";
 import { EditUserPage } from "../pages/EditUerPage";
 import { LoginPage } from "../pages/LoginPage";
 import { ProfilePage } from "../pages/ProfilePage";
+import { ProfileUserPage } from "../pages/ProfileUserPage";
 import { RegisterPage } from "../pages/RegisterPage";
 import { SinglePost } from "../pages/SinglePost";
-
 import { TimeLine } from "../pages/TimeLine";
-import { ProfileUserPage } from "../pages/ProfileUserPage";
+import "./Main.css";
 
 export const Main = () => {
   return (

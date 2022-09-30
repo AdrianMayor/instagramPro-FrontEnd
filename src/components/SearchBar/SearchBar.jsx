@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-export const SearchBar = ({ resetInput }) => {
+export const SearchBar = () => {
   const [keyword, setKeyword] = useState("");
+  const { keyword: keywordSearched } = useParams();
 
   useEffect(() => {
-    /*     console.log(keyword);
-    console.log(resetInput); */
-    if (resetInput === undefined) setKeyword("");
-  }, [resetInput]);
+    if (keywordSearched === undefined) setKeyword("");
+  }, [keywordSearched]);
 
   return (
     <form>
@@ -17,9 +16,9 @@ export const SearchBar = ({ resetInput }) => {
         name="keyword"
         onChange={(e) => setKeyword(e.target.value)}
         value={keyword}
+        placeholder="Seach the views! "
       ></input>
       <Link to={`/${keyword}`}>
-        {" "}
         <button>Search</button>
       </Link>
     </form>

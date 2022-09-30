@@ -1,8 +1,8 @@
 import "./App.css";
+import { AuthProviderComponent } from "./context/authContext";
+import { Footer } from "./layout/Footer";
+import { Header } from "./layout/Header";
 import { Main } from "./layout/Main";
-import { Header } from './layout/Header'
-import { Footer } from './layout/Footer'
-import { AuthProviderComponent } from './context/authContext'
 
 function App() {
   return (

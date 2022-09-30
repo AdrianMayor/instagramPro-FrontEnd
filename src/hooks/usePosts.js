@@ -6,18 +6,21 @@ export const usePosts = () => {
   const [posts, setPosts] = useState([]);
   const [index, setIndex] = useState({ lastPage: 1 });
   const [keys, setKeys] = useState({ keyword: "", limit: 0, page: 0 });
-  const [loadingData, setLoadingData] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const { token } = useContext(AuthContext);
 
   useEffect(() => {
     const getPosts = async () => {
       try {
-        setLoadingData(true);
+        setIsLoading(true);
 
         let data;
         if (keys.page <= index.lastPage) {
-          data = await services.entries.listEntries(keys, { token });
+          data = await services.entries.listEntries({
+            ...keys,
+            ...{ token: token },
+          });
 
           setPosts(data.data.entries);
 
@@ -26,7 +29,7 @@ export const usePosts = () => {
       } catch (error) {
         setError(error.message);
       } finally {
-        setLoadingData(false);
+        setIsLoading(false);
       }
     };
     if ((keys.page > 0 && keys.limit > 0) || keys.keyword !== "") {
@@ -40,8 +43,8 @@ export const usePosts = () => {
     index,
     setIndex,
     error,
-    loadingData,
-    setLoadingData,
+    isLoading,
     setKeys,
+    keys,
   };
 };

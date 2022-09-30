@@ -1,32 +1,26 @@
-import { Loading } from "../Loading/Loading";
 import { PostCard } from "../PostCard/PostCard";
+import "./PostList.css";
 
 export const PostList = ({
   totalPosts,
-  loading,
   pagination,
   index,
   handleClick,
   token,
 }) => {
   return (
-    <section>
-      {loading === false ? (
-        <>
-          <ul>
-            {totalPosts.length >= 1 &&
-              totalPosts.map((post) => (
-                <li key={post.entryId}>
-                  <PostCard post={post} token={token} />
-                </li>
-              ))}
-          </ul>
-          {pagination.page !== index?.lastPage && (
-            <button onClick={handleClick}>See more results</button>
-          )}
-        </>
-      ) : (
-        <Loading />
+    <section className="timeline__posts">
+      <ul>
+        {totalPosts.length >= 1 &&
+          totalPosts.map((post) => (
+            <li key={post.entryId}>
+              <PostCard post={post} token={token} />
+            </li>
+          ))}
+      </ul>
+
+      {pagination.page !== index?.lastPage && (
+        <button onClick={handleClick}>See more results</button>
       )}
     </section>
   );
