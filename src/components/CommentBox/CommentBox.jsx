@@ -12,7 +12,7 @@ export const CommentBox = ({
 }) => {
   const [postComments, setPostComments] = useState([]);
   const [commentIndex, setCommentIndex] = useState(null);
-  console.log(comments);
+
   useEffect(() => {
     singlePost ? handleClick() : setPostComments(comments);
   }, [comments, singlePost]);
