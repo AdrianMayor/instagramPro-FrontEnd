@@ -3,46 +3,62 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext';
 import { useContext } from 'react';
 import { PhotoProfile } from '../PhotoProfile';
+import { LogoutIcon } from '../LogoutIcon/LogoutIcon';
+import { SearchBar } from '../../components/SearchBar/SearchBar';
+import { HomeLink } from '../HomeLink/HomeLink';
 
-export const AuthLinks = () => {
+
+export const AuthLinks = ({ link1, link2, handleClicker }) => {
 
     const { user, logout } = useContext(AuthContext);
 
     return (
-        <section >
-            {user ? (
-                <ul className='head'>
-                    <li>
-                        <PhotoProfile user={user} />
-                    </li>
-                    <li>
-                        <p>
-                            {user.username}
-                        </p>
-                    </li>
-                    <li>
-                        <p>Añadir post</p>
-                    </li>
-                    <li>
-                        <Link to='/login'>
-                            <button onClick={() => logout()}>Logout</button>
-                        </Link>
-                    </li>
-                </ul>
-            ) : (
-                <ul>
-                    <li>
-                        <Link to='/register'>Register</Link>
-                    </li>
-                    <li>
-                        <Link to='/login'>Login</Link>
-                    </li>
-                    <li>
-                        <Link to='/'> Home </Link>
-                    </li>
-                </ul>
-            )}
-            <p>Buscador</p>
-        </section>
+        <>
+            <nav className='header-nav'>
+                {user ? (
+                    <ul className='head'>
+                        <li className='head-user'>
+                            <PhotoProfile user={user} />
+                            <p>
+                                {user.username}
+                            </p>
+                        </li>
+                        <li>
+                            <Link to='/login'>
+                                <button className='logout-button' onClick={() => logout()}>
+                                    <LogoutIcon />
+                                </button>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/'>
+                                <HomeLink />
+                            </Link>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className='head'>
+                        <li>
+                            <Link to='/register' className='register-link'>
+                                <p id='register' onClick={handleClicker} className={link1}>
+                                    Register
+                                    <span className='underline'></span>
+                                </p>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/login' className='login-link'>
+                                <p id='login' onClick={handleClicker} className={link2}>
+                                    Login
+                                    <span className='underline'></span>
+                                </p>
+                            </Link>
+                        </li>
+                    </ul>
+                )}
+            </nav>
+            <SearchBar />
+        </>
+
     )
 }

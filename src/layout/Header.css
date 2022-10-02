@@ -1,0 +1,27 @@
+header {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem 0 1rem;
+    position: sticky;
+    top: 0rem;
+    border-bottom: 1px solid black;
+    background-color: var(--color1);
+    z-index: 2;
+}
+
+header a {
+    text-decoration: none;
+}
+
+header .titleApp {
+    color: var(--color2)
+}
+
+header .subTitleApp {
+    position: absolute;
+    z-index: 1;
+    top: 1.7rem;
+    left: 10rem;
+    max-width: 10rem;
+    color: var(--color6)
+}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { services } from '../services';
+import { ButtonForm } from '../components/ButtonForm/ButtonForm';
 
 export const RegisterPage = () => {
 
@@ -15,7 +16,7 @@ export const RegisterPage = () => {
         setError('');
         setMessage('');
         if (password1 !== password2) {
-            setError('Password do not much')
+            setError('Password do not match')
             return;
         }
         try {
@@ -32,39 +33,41 @@ export const RegisterPage = () => {
         }
     }
     return (
-        <section>
-            <form onSubmit={handleRegisterUser}>
-                <fieldset>
-                    <label htmlFor='username'>Nombre de usuario</label>
+        <section className='register'>
+            <h2 className='register-title'>Comparte tus momentos</h2>
+            <h3 className='register-subtitle'>Únete a Instagram Pro hoy mismo.</h3>
+            <form className='register-form' onSubmit={handleRegisterUser}>
+                <fieldset className='form-field'>
+                    <label className='label-username' htmlFor='username'>Nombre de usuario</label>
                     <input
                         type="text"
                         name='username'
                         onChange={(e) => setUsername(e.target.value)}></input>
                 </fieldset>
-                <fieldset>
-                    <label htmlFor='email'>Email</label>
+                <fieldset className='form-field'>
+                    <label className='label-email' htmlFor='email'>Email</label>
                     <input
                         type="email"
                         name='email'
                         onChange={(e) => setEmail(e.target.value)}></input>
                 </fieldset>
-                <fieldset>
-                    <label htmlFor='password1'>Contraseña</label>
+                <fieldset className='form-field'>
+                    <label className='label-password' htmlFor='password1'>Contraseña</label>
                     <input
                         type="password"
                         name='password1'
                         onChange={(e) => setPassword1(e.target.value)}></input>
                 </fieldset>
-                <fieldset>
-                    <label htmlFor='password2'>Repita la contraseña</label>
+                <fieldset className='form-field'>
+                    <label className='label-password' htmlFor='password2'>Repita la contraseña</label>
                     <input
                         type="password"
                         name='password2'
                         onChange={(e) => setPassword2(e.target.value)}></input>
                 </fieldset>
-                <button>Registrarse</button>
+                <ButtonForm message={'register'} />
             </form>
-            {error ? <p>{error}</p> : <p>{message}</p>}
+            {error ? <p className='message'>{error}</p> : <pc className='message'>{message}</pc>}
         </section>
     )
 }

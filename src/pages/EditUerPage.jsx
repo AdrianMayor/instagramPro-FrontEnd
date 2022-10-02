@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { services } from '../services';
 import { AuthContext } from '../context/authContext';
 import { useNavigate } from 'react-router-dom';
+import { ButtonForm } from '../components/ButtonForm/ButtonForm';
 
 export const EditUserPage = () => {
 
@@ -40,38 +41,43 @@ export const EditUserPage = () => {
 
     }
     return (
-        <section>
-            <form onSubmit={handleEditUser}>
-                <fieldset>
-                    <label htmlFor='username'>Nombre de usuario</label>
+        <section className='edit_user'>
+            <form className='edit-user-form' onSubmit={handleEditUser}>
+                <figure className='photo-container'>
+                    <img src='https://source.unsplash.com/300x100?country' alt='foto'></img>
+                </figure>
+                <fieldset className='form-field'>
+                    <label className='label-username' htmlFor='username'>Nombre de usuario</label>
                     <input
                         type="text"
                         name='username'
                         onChange={(e) => setUsername(e.target.value)}></input>
                 </fieldset>
-                <fieldset>
-                    <label htmlFor='email'>Email</label>
+                <fieldset className='form-field'>
+                    <label className='label-email' htmlFor='email'>Email</label>
                     <input
                         type="email"
                         name='email'
                         onChange={(e) => setEmail(e.target.value)}></input>
                 </fieldset>
-                <fieldset>
-                    <label htmlFor='avatar'>Avatar</label>
+                <fieldset className='form-field-avatar'>
+                    <label className='label-avatar' htmlFor='avatar'>Avatar</label>
                     <input
+                        className='avatar'
                         type="file"
                         name='avatar'
                         accept='.png, .jpg, .jpeg'
                         onChange={(e) => setAvatar(e.target.files[0])}>
                     </input>
                 </fieldset>
-                <p>Confirm the changes
-                    <input type='checkbox' placeholder='Confirm the changes' onClick={() => setConfirm(true)} />
-                </p>
+                <fieldset className='form-field' >
+                    <label className='label-confirm' htmlFor='confirm'>Confirma los cambios</label>
+                    <input type='checkbox' name='confirm' placeholder='Confirm the changes' onClick={() => setConfirm(true)} />
+                </fieldset>
 
-                <button>Editar usuario</button>
+                <ButtonForm message={'Edit user'} />
             </form>
-            {error ? <p>{error}</p> : <p>{message}</p>}
+            {error ? <p className='message'>{error}</p> : <p className='message'>{message}</p>}
         </section>
     )
 }

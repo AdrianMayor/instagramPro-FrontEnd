@@ -1,35 +1,67 @@
 import { useProfileUser } from '../hooks/useProfileUser';
-import { LoadDataWaiting } from '../components/LoadDataWaiting';
+import { Loading } from '../components/Loading/Loading';
 import { PhotoUserList } from '../components/PhotoUserList'
 import { useParams } from 'react-router-dom';
 import { PhotoProfile } from '../components/PhotoProfile';
-import { useOwnUser } from '../hooks/useOwnUser';
 import { ProfilePage } from './ProfilePage';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../context/authContext';
 
 export const ProfileUserPage = () => {
 
     const { id: idUser } = useParams();
-    const { user, userPhotos, loading, error } = useProfileUser(idUser);
-    const { user: myUser } = useOwnUser();
+    const { user, userPhotos, loading, error, index, setKeys, setLoading } = useProfileUser(idUser);
+    const { user: myUser } = useContext(AuthContext);
+    const [totalPhotos, setTotalPhotos] = useState([]);
 
+    // Definimos el límite de "fotos" para cada pagina
+    const [pagination, setPagination] = useState({
+        limit: 10,
+        page: 1,
+    });
 
-    if (loading) return <LoadDataWaiting></LoadDataWaiting>
+    useEffect(() => {
+        setKeys(pagination)
+    }, [pagination]);
+
+    useEffect(() => {
+        setTotalPhotos([...totalPhotos, ...userPhotos]);
+        setLoading(false);
+    }, [userPhotos]);
+
+    // función que actualiza la paginación
+    const handleClick = () => {
+        setPagination({ ...pagination, ...{ page: pagination.page + 1 } });
+    };
+
+    if (loading) return <Loading></Loading>
     if (error) return <p>{error.message}</p>
 
     return (
         <>
-            {user.id === myUser.id ?
+            {user.id === myUser?.id ?
                 <ProfilePage /> : (
-                    <section>
-                        <PhotoProfile user={user}></PhotoProfile>
-                        <h1>{user.username}</h1>
-                        <p>Desde: {new Date(user.createdAt).toDateString()}</p>
+                    <section className='user-profile-page'>
+                        <article className='user-profile-head'>
+                            <PhotoProfile user={user}></PhotoProfile>
+                            <h1 className='user_username'>{user.username}</h1>
+                            <p className='date_created'>Desde: {new Date(user.createdAt).toDateString()}</p>
+                        </article>
                         {Array.isArray(userPhotos) ? (
-                            <PhotoUserList userPhotos={userPhotos}></PhotoUserList>
-                        ) : <p>{userPhotos}</p>
+                            <PhotoUserList
+                                totalPhotos={totalPhotos}
+                                loading={loading}
+                                pagination={pagination}
+                                index={index}
+                                handleClick={handleClick}
+                            />
+                        ) : <article>{userPhotos}</article>
                         }
                     </section>)
             }
         </>
     )
 }
+
+
+

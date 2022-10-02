@@ -1,7 +1,8 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from '../context/authContext';
 import { services } from '../services';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { ButtonForm } from '../components/ButtonForm/ButtonForm';
 
 
 export const LoginPage = () => {
@@ -32,25 +33,33 @@ export const LoginPage = () => {
     }
 
     return (
-        <section>
+        <section className='login'>
             <form onSubmit={handleLoginUserForm}>
-                <fieldset>
-                    <label htmlFor='email'>Email</label>
+                <figure className='photo-container'>
+                    <img src='https://source.unsplash.com/300x150?country' alt='foto'></img>
+                </figure>
+                <fieldset className='form-field'>
+                    <label className='label-email' htmlFor='email'>Email</label>
                     <input
                         type="email"
                         name='email'
                         onChange={(e) => setEmail(e.target.value)}></input>
                 </fieldset>
-                <fieldset>
-                    <label htmlFor='password'>Contraseña</label>
+                <fieldset className='form-field'>
+                    <label className='label-password' htmlFor='password'>Contraseña</label>
                     <input
                         type="password"
-                        name='password1'
+                        name='password'
                         onChange={(e) => setPassword(e.target.value)}></input>
                 </fieldset>
-                <button>Login</button>
+                <ButtonForm message={'Login'} />
             </form>
-            {error ? <p>{error}</p> : <p>{message}</p>}
+            <p className='login-no-count'>¿No tienes una cuenta?
+                <Link to='/register'>
+                    Registrate
+                </Link>
+            </p>
+            {error ? <p className='message'>{error}</p> : <p className='message'>{message}</p>}
         </section>
     )
 }

@@ -3,5 +3,93 @@
     list-style: none;
     align-items: center;
     gap: 2rem;
+}
 
+.head {
+    justify-content: space-between;
+}
+
+.head .head-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.head .head-user p {
+    color: var(--color6);
+}
+
+.head .head-user article a {
+    display: flex;
+    justify-content: center;
+}
+
+.head .home-icon {
+    background-color: var(--color1);
+}
+
+.head .logout-button {
+    background-color: var(--color1);
+    border: none;
+}
+
+header .searcher {
+    align-self: center;
+    margin-bottom: 1rem;
+}
+
+header .header-nav {
+    margin: 1.5rem 1.5rem 1rem 1.5rem;
+}
+
+.select-disabled {
+    color: var(--color6);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.underline {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    width: 100%;
+    height: 2px;
+}
+
+.underline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: inherit;
+    display: block;
+    width: inherit;
+    height: inherit;
+    background-color: currentColor;
+    transition: transform .2s ease-out;
+}
+
+.register-link .select-disabled .underline::before {
+    transform: translateX(101%);
+}
+
+.login-link .select-disabled .underline::before {
+    transform: translateX(-101%);
+}
+
+.select-active {
+    color: var(--color2);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.select-active .underline::before {
+    transform: translateX(0);
+}
+
+#login,
+#register {
+    transform: translateX(0);
+    transition: all .3s ease-out;
 }

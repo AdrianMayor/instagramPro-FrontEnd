@@ -7,7 +7,8 @@ export const AuthContext = createContext();
 export const AuthProviderComponent = ({children}) => {
     const [ token, setToken ] = useState(localStorage.getItem('token'));
     const [ user, setUser ] = useState(null);
- 
+    const [ keys, setKeys ] = useState({limit:10, page:1});
+
     const logout = () => {
         setUser(null)
         setToken('')
@@ -16,25 +17,25 @@ export const AuthProviderComponent = ({children}) => {
         setToken(token);
     }
 
-  
+    // Controlamos los cambios en el toquen
     useEffect(() => {
         localStorage.setItem('token', token);
         const getProfile = async () => {
             try {
-                const profile = await services.users.ownUserProfileServices({token});
+                const profile = await services.users.ownUserProfileServices({keys, token});
                 setUser(profile.data.fullUser.user)
             } catch {
                logout();
             }
-       
         }
         if(token) getProfile();
-    },[token])
+    }, [token])
 
+    // Controlamos los cambios del user
     useEffect(() => {
         const getProfile = async () => {
             try {
-                const profile = await services.users.ownUserProfileServices({token});
+                const profile = await services.users.ownUserProfileServices({keys, token});
                 setUser(profile.data.fullUser.user)
             } catch {
                logout();
@@ -46,7 +47,13 @@ export const AuthProviderComponent = ({children}) => {
 
 
     return <AuthContext.Provider
-                value={{user, setUser, token, login, logout}}>
+                value={{
+                    user, 
+                    setUser, 
+                    token, 
+                    login, 
+                    logout
+                }}>
                 {children}
             </AuthContext.Provider>;
 }
