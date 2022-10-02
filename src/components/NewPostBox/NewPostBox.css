@@ -1,0 +1,51 @@
+.newPostBox {
+  padding: 1rem;
+  background-color: gray;
+  display: grid;
+  grid-template-columns: 1fr 0.2fr;
+  grid-template-rows: repeat(2, 1fr);
+  margin: 0 auto;
+  border-radius: 10px;
+  max-width: 700px;
+  align-items: center;
+  justify-items: center;
+  overflow: hidden;
+}
+
+.newPostBox button {
+  cursor: pointer;
+}
+
+.newPostBox__photos {
+  grid-column: 1 / 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-right: 6rem;
+  font-size: 0.8rem;
+}
+
+.newPostBox__photos span {
+  align-self: end;
+}
+
+.newPostBox__description {
+  grid-column: 1/2;
+  grid-row: 2;
+}
+.newPostBox__description textarea {
+  border-radius: 10px;
+  text-align: center;
+}
+
+.newPostBox__sendButton {
+  grid-column: 2/-1;
+  grid-row: 1/-1;
+  padding: 1rem;
+}
+
+.newPostBox__picPreview {
+  border-radius: 10px;
+}

@@ -3,10 +3,13 @@
   margin: 0;
   box-sizing: border-box;
   list-style-type: none;
+  text-decoration: none;
 
   --postCardBackground: rgba(77, 155, 245, 0.829);
 }
 
 .App {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

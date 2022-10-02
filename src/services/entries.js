@@ -3,7 +3,6 @@ import axios from "axios";
 // Funcion destinada a crear una entrada
 
 export const newEntry = async ({ post, token }) => {
-  console.log(post);
   try {
     const FormData = require("form-data");
 
@@ -31,7 +30,6 @@ export const newEntry = async ({ post, token }) => {
 // Funcion destinada a enviar un comentario a una entrada
 
 export const sendCommentToEntry = async ({ comment, idEntry, token }) => {
-  console.log(comment);
   try {
     const response = await axios.post(
       `${process.env.REACT_APP_SERVER}/entries/${idEntry}/comment`,

@@ -1,6 +1,11 @@
 .timeline__posts {
-  /*   display: flex;
+  display: flex;
   flex-direction: column;
-  align-items: center; */
+  justify-content: center;
   margin: 0.5rem;
+}
+
+.timeline__seeMorePostsButton {
+  width: fit-content;
+  align-self: center;
 }

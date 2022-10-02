@@ -31,6 +31,10 @@
   font-size: 0.9rem;
 }
 
+.postCard__commentBox button {
+  cursor: pointer;
+}
+
 .postCard__commentBox--moreButtons {
   align-self: center;
   justify-content: center;
@@ -41,7 +45,6 @@
   font-style: italic;
   border: none;
   color: white;
-  cursor: pointer;
   padding: 0.5rem;
 }
 

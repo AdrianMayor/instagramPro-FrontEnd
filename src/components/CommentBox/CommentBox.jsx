@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { services } from "../../services";
 import { Comment } from "../Comment/Comment";
+import { SendCommentIcon } from "../SendCommentIcon/SendCommentIcon";
 import "./CommentBox.css";
 
 export const CommentBox = ({
@@ -27,7 +28,7 @@ export const CommentBox = ({
         page: commentIndex,
         token,
       });
-      postComments.length === 3 || singlePost
+      postComments.length === 3 || !singlePost
         ? setPostComments(data.data.entryComments)
         : setPostComments([...postComments, ...data.data.entryComments]);
 
@@ -66,11 +67,6 @@ export const CommentBox = ({
     <>
       {token && (
         <form onSubmit={handleSubmit} autoComplete="off">
-          {/*             <input
-              type="text"
-              name="newComment"
-              placeholder="Share your thoughts"
-            ></input> */}
           <textarea
             maxLength={150}
             data-limit-row-lent="true"
@@ -81,7 +77,9 @@ export const CommentBox = ({
             placeholder="Share your thoughts"
             autoFocus
           />
-          <button>Send</button>
+          <button>
+            <SendCommentIcon></SendCommentIcon>
+          </button>
         </form>
       )}
       <ul className="postCard__commentBox--comments">
