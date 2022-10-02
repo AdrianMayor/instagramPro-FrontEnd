@@ -10,6 +10,7 @@
   align-items: center;
   justify-items: center;
   overflow: hidden;
+  gap: 0.5rem;
 }
 
 .newPostBox button {
@@ -36,6 +37,7 @@
   grid-row: 2;
 }
 .newPostBox__description textarea {
+  width: 100%;
   border-radius: 10px;
   text-align: center;
 }
@@ -48,4 +50,10 @@
 
 .newPostBox__picPreview {
   border-radius: 10px;
+}
+
+@media (max-width: 620px) {
+  .newPostBox__photos {
+    margin: 0;
+  }
 }
