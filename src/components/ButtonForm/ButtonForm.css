@@ -1,0 +1,17 @@
+.button-form {
+    margin-bottom: 0.5rem;
+    align-self: center;
+    box-shadow: none;
+    width: 50%;
+    height: 40px;
+    background-color: var(--color5);
+    color: var(--color2);
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px var(--color6),
+        -3px -3px 3px var(--color2);
+    letter-spacing: 1.3px;
+}
+
+.button-form:hover {
+    background-color: var(--color5);
+}

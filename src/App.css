@@ -3,13 +3,211 @@
   margin: 0;
   box-sizing: border-box;
   list-style-type: none;
-  text-decoration: none;
 
   --postCardBackground: rgba(77, 155, 245, 0.829);
+  /*background*/
+  --color1: #363237;
+  --color2: #F1F1F2;
+  --color3: #448991;
+  --color4: #80726e;
+  --color5: #3b4d68;
+  --color6: #b1b1b1;
 }
 
 .App {
-  min-height: 100vh;
+  background-color: var(--color1);
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+}
+
+
+/*Registro*/
+
+main .register-title {
+  margin: 1rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+main .register-subtitle {
+  font-size: 1.5rem;
+  margin: 1rem;
+  text-align: center;
+}
+
+/*Página de inicio de sesión*/
+
+main .login {
+  margin: 2rem;
+}
+
+main .login-no-count {
+  text-align: center;
+}
+
+/*Pagina de tu perfil*/
+
+main .own_profile .profile-data {
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+}
+
+main .own_profile .profile-data h1 {
+  color: var(--color2);
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+main .own_profile .profile-data .user-date-created {
+  color: var(--color4);
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+main .own_profile .profile-data a {
+  grid-area: 1 / 2 / 3 / 3;
+  align-self: center;
+  justify-self: center;
+}
+
+main .own_profile .edit-link {
+  color: var(--color6);
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border-bottom: 2px solid var(--color4)
+}
+
+/*Pagina de un usuario*/
+
+.user-profile-head {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.user-profile-head .avatar {
+  grid-area: 1 / 1 / 3 / 2;
+  margin: 1rem;
+}
+
+.user-profile-head .user_username {
+  grid-area: 1 / 2 / 2 / 3;
+  padding-left: 1.5rem;
+}
+
+.user-profile-head .date_created {
+  grid-area: 2 / 1 / 3 / 3;
+  text-align: center;
+}
+
+/*login, register y edit (común)*/
+
+main .login,
+main .register,
+main .edit_user {
+  max-width: 350px;
+  min-height: 500px;
+  background-color: var(--color2);
+  border-radius: 15px;
+  box-shadow: 5px 5px 8px var(--color5);
+}
+
+main .login form,
+main .register form,
+main .edit_user form {
+  display: flex;
+  flex-direction: column;
+}
+
+main .login {
+  margin: 80px auto;
+  padding: 40px 30px 30px 30px;
+}
+
+main .register {
+  margin: 1rem auto;
+  padding: 20px 30px 20px 30px;
+}
+
+
+main .edit_user {
+  margin: 3rem auto;
+  padding: 20px 30px 20px 30px;
+}
+
+main .login .form-field input,
+main .register .form-field input,
+main .edit_user .form-field input {
+  width: 100%;
+  display: block;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.2rem;
+  color: var(--color5);
+  padding: 10px 15px 10px 10px;
+}
+
+.login .name,
+.register .name,
+.edit_user .name {
+  font-weight: 600;
+  font-size: 1.4rem;
+  letter-spacing: 1.3px;
+  padding-left: 10px;
+  color: var(--color5);
+}
+
+.login .form-field,
+.register .form-field,
+.edit_user .form-field,
+.edit_user .form-field-avatar {
+  text-align: center;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  box-shadow: inset 8px 8px 8px var(--color6), inset -8px -8px 8px var(--color2);
+  border: none;
+}
+
+.edit_user .form-field-avatar {
+  height: 60px;
+}
+
+.form-field .label-password {
+  color: var(--color5);
+}
+
+.login a,
+.register a,
+.edit_user a {
+  text-decoration: none;
+  font-size: 0.8rem;
+  color: var(--color5);
+}
+
+.login a:hover,
+.register a:hover,
+.edit_user a:hover {
+  color: var(--color1);
+}
+
+main .photo-container {
+  display: flex;
+  flex-direction: column;
+}
+
+main .photo-container img {
+  margin-bottom: 1rem;
+  border-radius: 5%;
+  box-shadow: 3px 3px 3px var(--color1);
+}
+
+.message {
+  margin: 0.5rem;
+  text-align: center;
 }

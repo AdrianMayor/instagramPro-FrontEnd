@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// Funcion de registro
 export const registerUserService = async ({
   username,
   password,
@@ -23,6 +24,7 @@ export const registerUserService = async ({
   }
 };
 
+// Funcion de login
 export const loginUserService = async ({ email, password }) => {
   if (!email || !password) throw new Error("All params are required");
   try {
@@ -41,6 +43,7 @@ export const loginUserService = async ({ email, password }) => {
   }
 };
 
+// Función para la edicion de los usuarios
 export const editUserService = async ({ token, username, email, avatar }) => {
   if (!username && !email && !avatar) throw new Error("need edit anything");
   try {
@@ -65,31 +68,39 @@ export const editUserService = async ({ token, username, email, avatar }) => {
   }
 };
 
-
-export const userIdProfileServices = async (idUser) => {
+// Funcion que recoje los datos de un usuario y sus fotos
+export const userIdProfileServices = async (idUser, {page, limit}) => {
     const response = await axios.get(
-      `${process.env.REACT_APP_SERVER}/users/${idUser}`,
+      `${process.env.REACT_APP_SERVER}/users/${idUser}?page=${
+        page !== undefined ? `${page}` : ""}&limit=${
+        limit !== undefined ? `${limit}` : ""
+      }`,
     );
 
     if(response.status !== 200) throw new Error (response.message);
-
     return response.data;
     
 }
 
-export const ownUserProfileServices = async ({token}) => {
+// Funcion que recoje los datos del usuario logueado y sus fotos
+export const ownUserProfileServices = async ({token, keys}) => {
     const response = await axios.get(
-      `${process.env.REACT_APP_SERVER}/users/`,{
+      `${process.env.REACT_APP_SERVER}/users?page=${
+        keys.page !== undefined ? `${keys.page}` : ""}&limit=${
+        keys.limit !== undefined ? `${keys.limit}` : ""
+      }`,
+      {
         headers: {
           Authorization: token,
-        }
+        },
       }
-    )
+    );
     if(response.status !== 200)  throw new Error(response.message)
     return response.data;
 }
 
 
+// Función que recoje los datos de un usuario
 export const getUser = async ({ idUser, token }) => {
   try {
     const response = await axios.get(

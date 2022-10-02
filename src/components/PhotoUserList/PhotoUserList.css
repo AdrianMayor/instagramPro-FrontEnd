@@ -1,0 +1,28 @@
+.photos_list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    list-style: none;
+}
+
+.photos_list article {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.photos_list img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.photos_user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+}
