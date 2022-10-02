@@ -20,7 +20,9 @@ export const PostList = ({
       </ul>
 
       {pagination.page !== index?.lastPage && (
-        <button onClick={handleClick}>See more results</button>
+        <button className="timeline__seeMorePostsButton" onClick={handleClick}>
+          See more results
+        </button>
       )}
     </section>
   );

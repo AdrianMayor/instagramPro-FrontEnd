@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useGetUser } from "../../hooks/useGetUser";
 import { DefaultProfilePic } from "../DefaultProfilePic/DefaultProfilePic";
 import { Loading } from "../Loading/Loading";
@@ -13,19 +14,25 @@ export const PostCardHeader = ({
     <>
       {loading ? (
         <Loading></Loading>
-      ) : user.avatar ? (
-        <img
-          src={`${process.env.REACT_APP_SERVER}/${user.avatar}`}
-          alt={`Avatar of ${userProfile}`}
-          className="postCard__header--profilePic"
-        ></img>
       ) : (
-        <DefaultProfilePic
-          userProfile={userProfile}
-          className="postCard__header--profilePic"
-        />
+        <Link to={`/users/${userProfileId}`}>
+          {user.avatar ? (
+            <img
+              src={`${process.env.REACT_APP_SERVER}/${user.avatar}`}
+              alt={`Avatar of ${userProfile}`}
+              className="postCard__header--profilePic"
+            ></img>
+          ) : (
+            <DefaultProfilePic
+              userProfile={userProfile}
+              className={"postCard__header--profilePic"}
+            />
+          )}
+        </Link>
       )}
-      <p className="postCard__header--username">{userProfile}</p>
+      <Link to={`/users/${userProfileId}`}>
+        <p className="postCard__header--username">{userProfile}</p>
+      </Link>
       <p className="postCard__header--creationDate">
         {new Date(entryCreationDate).toLocaleString()}{" "}
       </p>

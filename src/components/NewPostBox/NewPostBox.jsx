@@ -1,12 +1,36 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { services } from "../../services";
+import { AddPhotoIcon } from "../AddPhotoIcon/AddPhotoIcon";
+import { CleanPhotosIcon } from "../CleanPhotosIcon/CleanPhotosIcon";
+import { SendPostIcon } from "../SendPostIcon/SendPostIcon";
+
+import "./NewPostBox.css";
 
 export const NewPostBox = ({ totalPosts, setTotalPosts, token }) => {
   const [images, setImages] = useState([]);
+  const hiddenInputFileImageA = useRef(null);
+  const hiddenInputFileImageB = useRef(null);
+  const hiddenInputFileImageC = useRef(null);
+  const hiddenInputFileImageD = useRef(null);
 
-  console.log();
   const handleOnChange = ({ value }) => {
     setImages([...images, value]);
+  };
+
+  const handleClickImageA = () => {
+    hiddenInputFileImageA.current.click();
+  };
+
+  const handleClickImageB = () => {
+    hiddenInputFileImageB.current.click();
+  };
+
+  const handleClickImageC = () => {
+    hiddenInputFileImageC.current.click();
+  };
+
+  const handleClickImageD = () => {
+    hiddenInputFileImageD.current.click();
   };
 
   const handleSubmit = (e) => {
@@ -39,23 +63,31 @@ export const NewPostBox = ({ totalPosts, setTotalPosts, token }) => {
   };
 
   const handleClearClick = (e) => {
-    e.nativeEvent.path[1].reset();
+    e.nativeEvent.path[3].reset();
     setImages([]);
   };
 
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="newPostBox">
+      <div className="newPostBox__photos">
+        <button
+          type="button"
+          style={{ display: images.length >= 1 && "none" }}
+          onClick={handleClickImageA}
+        >
+          <AddPhotoIcon></AddPhotoIcon>
+        </button>
         <input
-          required
           type="file"
           name="imageA"
-          style={{ display: images.length >= 1 && "none" }}
+          ref={hiddenInputFileImageA}
+          style={{ display: "none" }}
           onChange={(event) => handleOnChange({ value: event.target.files[0] })}
         />
         {images.length >= 1 && (
           <div>
             <img
+              className="newPostBox__picPreview"
               src={URL.createObjectURL(images[0])}
               alt="sdf"
               height="50px"
@@ -64,18 +96,29 @@ export const NewPostBox = ({ totalPosts, setTotalPosts, token }) => {
         )}
 
         {images.length >= 1 && (
-          <input
-            type="file"
-            name="imageB"
-            style={{ display: images.length >= 2 && "none" }}
-            onChange={(event) =>
-              handleOnChange({ value: event.target.files[0] })
-            }
-          />
+          <>
+            <button
+              type="button"
+              style={{ display: images.length >= 2 && "none" }}
+              onClick={handleClickImageB}
+            >
+              <AddPhotoIcon></AddPhotoIcon>
+            </button>
+            <input
+              type="file"
+              name="imageB"
+              ref={hiddenInputFileImageB}
+              style={{ display: "none" }}
+              onChange={(event) =>
+                handleOnChange({ value: event.target.files[0] })
+              }
+            />
+          </>
         )}
         {images.length >= 2 && (
           <div>
             <img
+              className="newPostBox__picPreview"
               src={URL.createObjectURL(images[1])}
               alt="sdf"
               height="50px"
@@ -84,38 +127,60 @@ export const NewPostBox = ({ totalPosts, setTotalPosts, token }) => {
         )}
 
         {images.length >= 2 && (
-          <input
-            type="file"
-            namne="imageC"
-            style={{ display: images.length >= 3 && "none" }}
-            onChange={(event) =>
-              handleOnChange({ value: event.target.files[0] })
-            }
-          />
+          <>
+            <button
+              type="button"
+              style={{ display: images.length >= 3 && "none" }}
+              onClick={handleClickImageC}
+            >
+              <AddPhotoIcon></AddPhotoIcon>
+            </button>
+            <input
+              type="file"
+              namne="imageC"
+              ref={hiddenInputFileImageC}
+              style={{ display: "none" }}
+              onChange={(event) =>
+                handleOnChange({ value: event.target.files[0] })
+              }
+            />
+          </>
         )}
         {images.length >= 3 && (
           <div>
             <img
+              className="newPostBox__picPreview"
               src={URL.createObjectURL(images[2])}
               alt="sdf"
               height="50px"
             ></img>
           </div>
         )}
-        {images.length >= 3 && (
-          <input
-            type="file"
-            name="imageD"
-            style={{ display: images.length >= 4 && "none" }}
-            onChange={(event) =>
-              handleOnChange({ value: event.target.files[0] })
-            }
-          />
-        )}
 
+        {images.length >= 3 && (
+          <>
+            <button
+              type="button"
+              style={{ display: images.length >= 4 && "none" }}
+              onClick={handleClickImageD}
+            >
+              <AddPhotoIcon></AddPhotoIcon>
+            </button>
+            <input
+              type="file"
+              name="imageD"
+              ref={hiddenInputFileImageD}
+              style={{ display: "none" }}
+              onChange={(event) =>
+                handleOnChange({ value: event.target.files[0] })
+              }
+            />
+          </>
+        )}
         {images.length >= 4 && (
           <div>
             <img
+              className="newPostBox__picPreview"
               src={URL.createObjectURL(images[3])}
               alt="sdf"
               height="50px"
@@ -124,18 +189,26 @@ export const NewPostBox = ({ totalPosts, setTotalPosts, token }) => {
         )}
 
         {images.length >= 1 && (
-          <button onClick={(e) => handleClearClick(e)}>Clear photos</button>
+          <button type="button" onClick={(e) => handleClearClick(e)}>
+            <CleanPhotosIcon></CleanPhotosIcon>
+          </button>
         )}
+
         <span>{images.length}/4</span>
+      </div>
+      <div className="newPostBox__description">
         <textarea
-          maxLength={150}
+          maxLength={200}
           data-limit-row-lent="true"
-          rows={5}
+          rows={2}
+          cols={40}
           name="description"
           placeholder="Add words to your views!"
         />
-        <button>Send</button>
-      </form>
-    </section>
+      </div>
+      <button className="newPostBox__sendButton">
+        <SendPostIcon></SendPostIcon>
+      </button>
+    </form>
   );
 };

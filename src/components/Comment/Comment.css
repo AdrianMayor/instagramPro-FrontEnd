@@ -1,22 +1,21 @@
 .postCard__commentBox--profilePic {
   width: 35px;
   border-radius: 50%;
+  border: 1px rgba(255, 255, 255, 0.26) solid;
 }
 
 .postCard__commentBox--userName {
   font-weight: bold;
   display: inline;
+  color: white;
 }
 
 .postCard__commentBox--date {
-  /* display: inline; */
   float: right;
   font-size: 0.5rem;
 }
 
 .postCard__commentBox--textBox {
-  /*   display: flex;
-  flex-direction: column; */
   width: 100%;
 }
 .postCard__commentBox--comment {

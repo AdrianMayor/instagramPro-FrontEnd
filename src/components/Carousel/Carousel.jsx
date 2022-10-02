@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSwipeable } from "react-swipeable";
+import { LeftArrowButton, RightArrowButton } from "../Arrows/Arrows";
 import "./Carousel.css";
 
 export const CarouselItem = ({ children, width }) => {
@@ -42,7 +43,7 @@ const Carousel = ({ children }) => {
                 : setActiveIndex(children.length - 1);
             }}
           >
-            ◀️
+            <LeftArrowButton />
           </button>
           <div
             className={`carousel__menu--positionDots ${
@@ -76,7 +77,7 @@ const Carousel = ({ children }) => {
                 : setActiveIndex(0);
             }}
           >
-            ▶️
+            <RightArrowButton />
           </button>
         </div>
       )}

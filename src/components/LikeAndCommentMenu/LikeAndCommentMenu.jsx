@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { services } from "../../services";
+import { CommentButton } from "../CommentButton/CommentButton";
+import { LikeButton } from "../LikeButton/LikeButton";
 import "./LikeAndCommentMenu.css";
 
 export const LikeAndCommentMenu = ({
@@ -12,16 +14,17 @@ export const LikeAndCommentMenu = ({
   setNewCommentToggle,
 }) => {
   const [liked, setLiked] = useState(undefined);
+
   const handleLikeButton = async () => {
     try {
       if (!token) throw new Error("Must be logged");
       const { data } = await services.entries.likeAnEntry({ idEntry, token });
       data.message === "Disliked" ? setLiked(false) : setLiked(true);
-      console.log(data);
     } catch (err) {
       console.error(err);
     }
   };
+
   const handleCommentDisplayButton = () => {
     setNewCommentToggle(!newCommentToggle);
   };
@@ -34,17 +37,19 @@ export const LikeAndCommentMenu = ({
     <menu className="postCard__likeAndCommentMenu">
       <li>
         {liked !== undefined && (
-          <button
-            onClick={handleLikeButton}
-            style={liked ? { background: "red" } : { background: "" }}
-          >
-            💓
+          <button onClick={handleLikeButton} className="postCard__likeButton">
+            <LikeButton className={liked ? "likeButtonLiked" : ""} />
           </button>
         )}
         <p className="postCard__totalLikes">{totalLikes}</p>
       </li>
       <li>
-        <button onClick={handleCommentDisplayButton}>🗣️</button>
+        <button
+          className="postCard__commentButton"
+          onClick={handleCommentDisplayButton}
+        >
+          <CommentButton />
+        </button>
         <p className="postCard__totalComments">{totalComments}</p>
       </li>
     </menu>
