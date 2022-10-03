@@ -1,7 +1,9 @@
+import './Footer.css'
+
 export const Footer = () => {
     return (
         <footer>
-            © Todos los derechos reservados
+            © All rigths reserverd
         </footer>
 
     )

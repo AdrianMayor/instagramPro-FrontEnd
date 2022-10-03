@@ -26,12 +26,11 @@ export const Header = () => {
 
     return (
         <header>
-            <Link to='/' onClick={handleClickRemove}>
-                <h1 className='titleApp'>Instagram</h1>
-                <h2 className='subTitleApp'>Pro</h2>
-            </Link>
+            <h1 className='titleApp'>Instagram</h1>
+            <h2 className='subTitleApp'>PRO</h2>
             <AuthLinks
                 handleClicker={handleClicker}
+                handleClickRemove={handleClickRemove}
                 link1={link1}
                 link2={link2}
             />

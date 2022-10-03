@@ -35,10 +35,10 @@ export const ProfilePage = () => {
         <section className='own_profile'>
             <article className='profile-data'>
                 <h1>{user.username}</h1>
-                <p className='user-date-created'>Desde: {new Date(user.createdAt).toLocaleString()}</p>
+                <p className='user-date-created'>Since: {new Date(user.createdAt).toLocaleString()}</p>
                 <Link to='/edit' className='edit-link'>
                     <p className='edit-link-text'>
-                        Editar perfil
+                        Edit user
                     </p>
                 </Link>
             </article>

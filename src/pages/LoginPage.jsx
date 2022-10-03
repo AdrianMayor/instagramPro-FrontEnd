@@ -34,10 +34,10 @@ export const LoginPage = () => {
 
     return (
         <section className='login'>
+            <figure className='photo-container'>
+                <img src='https://source.unsplash.com/300x150?country' alt='foto'></img>
+            </figure>
             <form onSubmit={handleLoginUserForm}>
-                <figure className='photo-container'>
-                    <img src='https://source.unsplash.com/300x150?country' alt='foto'></img>
-                </figure>
                 <fieldset className='form-field'>
                     <label className='label-email' htmlFor='email'>Email</label>
                     <input
@@ -46,7 +46,7 @@ export const LoginPage = () => {
                         onChange={(e) => setEmail(e.target.value)}></input>
                 </fieldset>
                 <fieldset className='form-field'>
-                    <label className='label-password' htmlFor='password'>Contraseña</label>
+                    <label className='label-password' htmlFor='password'>Password</label>
                     <input
                         type="password"
                         name='password'
@@ -54,9 +54,9 @@ export const LoginPage = () => {
                 </fieldset>
                 <ButtonForm message={'Login'} />
             </form>
-            <p className='login-no-count'>¿No tienes una cuenta?
+            <p className='login-no-count'>¿Dont you have an account?
                 <Link to='/register'>
-                    Registrate
+                    Singup
                 </Link>
             </p>
             {error ? <p className='message'>{error}</p> : <p className='message'>{message}</p>}

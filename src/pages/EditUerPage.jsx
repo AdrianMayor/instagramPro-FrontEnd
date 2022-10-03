@@ -42,12 +42,12 @@ export const EditUserPage = () => {
     }
     return (
         <section className='edit_user'>
+            <figure className='photo-container'>
+                <img src='https://source.unsplash.com/300x100?country' alt='foto'></img>
+            </figure>
             <form className='edit-user-form' onSubmit={handleEditUser}>
-                <figure className='photo-container'>
-                    <img src='https://source.unsplash.com/300x100?country' alt='foto'></img>
-                </figure>
                 <fieldset className='form-field'>
-                    <label className='label-username' htmlFor='username'>Nombre de usuario</label>
+                    <label className='label-username' htmlFor='username'>User name</label>
                     <input
                         type="text"
                         name='username'
@@ -71,7 +71,7 @@ export const EditUserPage = () => {
                     </input>
                 </fieldset>
                 <fieldset className='form-field' >
-                    <label className='label-confirm' htmlFor='confirm'>Confirma los cambios</label>
+                    <label className='label-confirm' htmlFor='confirm'>Confirm changes</label>
                     <input type='checkbox' name='confirm' placeholder='Confirm the changes' onClick={() => setConfirm(true)} />
                 </fieldset>
 

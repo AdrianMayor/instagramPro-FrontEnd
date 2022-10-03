@@ -34,11 +34,11 @@ export const RegisterPage = () => {
     }
     return (
         <section className='register'>
-            <h2 className='register-title'>Comparte tus momentos</h2>
-            <h3 className='register-subtitle'>Únete a Instagram Pro hoy mismo.</h3>
+            <h2 className='register-title'>Share your moments</h2>
+            <h3 className='register-subtitle'>Join <span className='register-subtitle-logo'>Instagram </span><span className='register-subtitle-logo2'>Pro</span> rigth now</h3>
             <form className='register-form' onSubmit={handleRegisterUser}>
                 <fieldset className='form-field'>
-                    <label className='label-username' htmlFor='username'>Nombre de usuario</label>
+                    <label className='label-username' htmlFor='username'>User name</label>
                     <input
                         type="text"
                         name='username'
@@ -52,20 +52,20 @@ export const RegisterPage = () => {
                         onChange={(e) => setEmail(e.target.value)}></input>
                 </fieldset>
                 <fieldset className='form-field'>
-                    <label className='label-password' htmlFor='password1'>Contraseña</label>
+                    <label className='label-password' htmlFor='password1'>Password</label>
                     <input
                         type="password"
                         name='password1'
                         onChange={(e) => setPassword1(e.target.value)}></input>
                 </fieldset>
                 <fieldset className='form-field'>
-                    <label className='label-password' htmlFor='password2'>Repita la contraseña</label>
+                    <label className='label-password' htmlFor='password2'>Repeat the password</label>
                     <input
                         type="password"
                         name='password2'
                         onChange={(e) => setPassword2(e.target.value)}></input>
                 </fieldset>
-                <ButtonForm message={'register'} />
+                <ButtonForm message={'Singup'} />
             </form>
             {error ? <p className='message'>{error}</p> : <pc className='message'>{message}</pc>}
         </section>

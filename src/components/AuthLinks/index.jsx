@@ -8,7 +8,7 @@ import { SearchBar } from '../../components/SearchBar/SearchBar';
 import { HomeLink } from '../HomeLink/HomeLink';
 
 
-export const AuthLinks = ({ link1, link2, handleClicker }) => {
+export const AuthLinks = ({ link1, link2, handleClicker, handleClickRemove }) => {
 
     const { user, logout } = useContext(AuthContext);
 
@@ -23,15 +23,15 @@ export const AuthLinks = ({ link1, link2, handleClicker }) => {
                                 {user.username}
                             </p>
                         </li>
-                        <li>
-                            <Link to='/login'>
+                        <li className='container-logout-icon'>
+                            <Link to='/login' onClick={handleClicker}>
                                 <button className='logout-button' onClick={() => logout()}>
                                     <LogoutIcon />
                                 </button>
                             </Link>
                         </li>
-                        <li>
-                            <Link to='/'>
+                        <li className='container-home-icon'>
+                            <Link to='/' onClick={handleClickRemove}>
                                 <HomeLink />
                             </Link>
                         </li>
@@ -41,9 +41,14 @@ export const AuthLinks = ({ link1, link2, handleClicker }) => {
                         <li>
                             <Link to='/register' className='register-link'>
                                 <p id='register' onClick={handleClicker} className={link1}>
-                                    Register
+                                    Singup
                                     <span className='underline'></span>
                                 </p>
+                            </Link>
+                        </li>
+                        <li className='container-home-icon'>
+                            <Link to='/' onClick={handleClickRemove}>
+                                <HomeLink />
                             </Link>
                         </li>
                         <li>
