@@ -10,8 +10,11 @@
     letter-spacing: 1.3px;
     cursor: pointer;
     border: none;
+    font-weight: bold;
 }
 
 .button-form:hover {
     background-color: var(--color3);
+    color: var(--color5);
+    font-weight: bold;
 }

@@ -1,4 +1,4 @@
-import './style.css'
+import './PhotoProfile.css'
 import DefaultProfilePic from "../../assets/icons/Default_pfp.svg.png";
 import { Link } from 'react-router-dom';
 
