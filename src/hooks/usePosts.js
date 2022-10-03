@@ -22,7 +22,6 @@ export const usePosts = () => {
           });
 
           setPosts(data.data.entries);
-
           setIndex(data.data.index);
         }
       } catch (error) {
@@ -40,6 +39,6 @@ export const usePosts = () => {
     posts,
     isLoading,
     setKeys,
-    keys,
+    index,
   };
 };
