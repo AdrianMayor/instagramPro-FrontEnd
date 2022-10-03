@@ -17,6 +17,7 @@ export const TimeLine = () => {
     page: 1,
   });
 
+  /* Dependiendo de si llega o no keyword, tiene un comportamiento y otro, estableciendo en la paginacion de ser necesario la palabra a buscar */
   useEffect(() => {
     if (keyword !== undefined) {
       setTotalPosts([]);
@@ -27,18 +28,21 @@ export const TimeLine = () => {
     }
   }, [keyword]);
 
+  /* Una vez hay un cambio en la paginacion, enviamos dichos cambios al custom hook */
   useEffect(() => {
     setKeys(pagination);
   }, [pagination]);
 
+  /* Realizamos la union de los posts ya renderizados con los nuevos que van llegando */
   useEffect(() => {
     setTotalPosts([...totalPosts, ...posts]);
   }, [posts]);
 
+  /* Con cada click establecemos la siguiente pagina a la que hacer llamada a la API */
   const handleClick = () => {
     setPagination({ ...pagination, ...{ page: pagination.page + 1 } });
   };
-  console.log(totalPosts);
+
   return (
     <>
       {token && (
