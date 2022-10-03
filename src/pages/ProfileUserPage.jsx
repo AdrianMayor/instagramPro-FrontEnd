@@ -45,7 +45,7 @@ export const ProfileUserPage = () => {
                         <article className='user-profile-head'>
                             <PhotoProfile user={user}></PhotoProfile>
                             <h1 className='user_username'>{user.username}</h1>
-                            <p className='date_created'>Desde: {new Date(user.createdAt).toDateString()}</p>
+                            <p className='date_created'>Since: {new Date(user.createdAt).toDateString()}</p>
                         </article>
                         {Array.isArray(userPhotos) ? (
                             <PhotoUserList

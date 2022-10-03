@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500&display=swap');
+
 * {
   padding: 0;
   margin: 0;
@@ -6,12 +9,13 @@
 
   --postCardBackground: rgba(77, 155, 245, 0.829);
   /*background*/
-  --color1: #363237;
-  --color2: #F1F1F2;
-  --color3: #448991;
-  --color4: #80726e;
-  --color5: #3b4d68;
-  --color6: #b1b1b1;
+  --color1: #ffffff;
+  --color2: #f4f5f5;
+  --color3: #01a9c1;
+  --color4: #a7d4dd;
+  --color5: #051f34;
+  --color6: #027495;
+  --color7: #c9caca;
 }
 
 .App {
@@ -25,15 +29,26 @@
 /*Registro*/
 
 main .register-title {
-  margin: 1rem;
   font-size: 2rem;
   text-align: center;
+  color: var(--color5);
+}
+
+main .register-subtitle-logo {
+  font-family: 'Grand Hotel', cursive;
+  font-size: 1.9rem;
+}
+
+main .register-subtitle-logo2 {
+  font-weight: 500;
 }
 
 main .register-subtitle {
-  font-size: 1.5rem;
-  margin: 1rem;
+  color: var(--color6);
+  font-size: 1.4rem;
+  padding-bottom: 1rem;
   text-align: center;
+  font-weight: 400;
 }
 
 /*Página de inicio de sesión*/
@@ -43,7 +58,12 @@ main .login {
 }
 
 main .login-no-count {
+  font-weight: 300;
   text-align: center;
+}
+
+main .login-no-count a {
+  margin-left: 0.2rem;
 }
 
 /*Pagina de tu perfil*/
@@ -56,13 +76,14 @@ main .own_profile .profile-data {
 }
 
 main .own_profile .profile-data h1 {
-  color: var(--color2);
+  color: var(--color5);
   grid-area: 1 / 1 / 2 / 2;
 }
 
 main .own_profile .profile-data .user-date-created {
-  color: var(--color4);
+  color: var(--color5);
   grid-area: 2 / 1 / 3 / 2;
+  font-weight: 300;
 }
 
 main .own_profile .profile-data a {
@@ -72,36 +93,34 @@ main .own_profile .profile-data a {
 }
 
 main .own_profile .edit-link {
-  color: var(--color6);
+  color: var(--color3);
   font-weight: bold;
   font-size: 1.2rem;
   text-decoration: none;
-  border-bottom: 2px solid var(--color4)
+  border-bottom: 2px solid var(--color3)
 }
 
 /*Pagina de un usuario*/
 
+
 .user-profile-head {
   display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-template-rows: repeat(2, auto);
-  align-items: center;
-  justify-content: flex-start;
+  grid-template-columns: 80px 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  margin-left: 2rem;
 }
 
-.user-profile-head .avatar {
+.user-profile-head a {
   grid-area: 1 / 1 / 3 / 2;
-  margin: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .user-profile-head .user_username {
   grid-area: 1 / 2 / 2 / 3;
-  padding-left: 1.5rem;
 }
 
 .user-profile-head .date_created {
-  grid-area: 2 / 1 / 3 / 3;
-  text-align: center;
+  grid-area: 2 / 2 / 3 / 3;
 }
 
 /*login, register y edit (común)*/
@@ -109,11 +128,14 @@ main .own_profile .edit-link {
 main .login,
 main .register,
 main .edit_user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 350px;
   min-height: 500px;
   background-color: var(--color2);
   border-radius: 15px;
-  box-shadow: 5px 5px 8px var(--color5);
+  box-shadow: 5px 5px 8px var(--color7);
 }
 
 main .login form,
@@ -121,22 +143,21 @@ main .register form,
 main .edit_user form {
   display: flex;
   flex-direction: column;
+  width: 280px;
 }
 
 main .login {
-  margin: 80px auto;
-  padding: 40px 30px 30px 30px;
+  margin: 40px auto;
 }
 
 main .register {
-  margin: 1rem auto;
+  margin: 10px auto;
   padding: 20px 30px 20px 30px;
 }
 
 
 main .edit_user {
-  margin: 3rem auto;
-  padding: 20px 30px 20px 30px;
+  margin: 1rem auto;
 }
 
 main .login .form-field input,
@@ -170,7 +191,7 @@ main .edit_user .form-field input {
   padding-left: 10px;
   margin-bottom: 20px;
   border-radius: 20px;
-  box-shadow: inset 8px 8px 8px var(--color6), inset -8px -8px 8px var(--color2);
+  box-shadow: inset 8px 8px 8px var(--color7), inset -8px -8px 8px var(--color1);
   border: none;
 }
 
@@ -178,8 +199,8 @@ main .edit_user .form-field input {
   height: 60px;
 }
 
-.form-field .label-password {
-  color: var(--color5);
+.form-field {
+  color: var(--color4);
 }
 
 .login a,
@@ -187,27 +208,29 @@ main .edit_user .form-field input {
 .edit_user a {
   text-decoration: none;
   font-size: 0.8rem;
-  color: var(--color5);
+  color: var(--color3);
 }
 
 .login a:hover,
 .register a:hover,
 .edit_user a:hover {
-  color: var(--color1);
+  color: var(--color5);
 }
 
 main .photo-container {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+
 }
 
 main .photo-container img {
-  margin-bottom: 1rem;
-  border-radius: 5%;
-  box-shadow: 3px 3px 3px var(--color1);
+  margin-bottom: 3rem;
+  border-top-right-radius: 5%;
+  border-top-left-radius: 5%;
+  width: 100%;
 }
 
 .message {
-  margin: 0.5rem;
   text-align: center;
+  font-weight: 200;
+  font-size: 0.9rem;
 }
