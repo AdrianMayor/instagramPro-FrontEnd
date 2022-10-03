@@ -1,4 +1,4 @@
-import './style.css';
+import './LoadDataWaiting.css';
 export const LoadDataWaiting = () => {
     return (
         <section className="loadComponent">

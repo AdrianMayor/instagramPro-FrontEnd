@@ -1,8 +1,8 @@
 import { useProfileUser } from '../hooks/useProfileUser';
 import { Loading } from '../components/Loading/Loading';
-import { PhotoUserList } from '../components/PhotoUserList'
+import { PhotoUserList } from '../components/PhotoUserList/PhotoUserList'
 import { useParams } from 'react-router-dom';
-import { PhotoProfile } from '../components/PhotoProfile';
+import { PhotoProfile } from '../components/PhotoProfile/PhotoProfile';
 import { ProfilePage } from './ProfilePage';
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/authContext';
@@ -34,7 +34,7 @@ export const ProfileUserPage = () => {
         setPagination({ ...pagination, ...{ page: pagination.page + 1 } });
     };
 
-    if (loading) return <Loading></Loading>
+    if (totalPhotos.length === 0 && loading) return <Loading></Loading>
     if (error) return <p>{error.message}</p>
 
     return (
@@ -55,7 +55,7 @@ export const ProfileUserPage = () => {
                                 index={index}
                                 handleClick={handleClick}
                             />
-                        ) : <article>{userPhotos}</article>
+                        ) : null
                         }
                     </section>)
             }

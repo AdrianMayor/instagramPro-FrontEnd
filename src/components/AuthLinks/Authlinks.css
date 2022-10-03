@@ -21,11 +21,20 @@
 
 .head .head-user p {
     color: var(--color6);
+    font-weight: 500;
 }
 
 .head .head-user article a {
     display: flex;
     justify-content: center;
+}
+
+.head .container-home-icon {
+    padding-right: 1.5rem;
+}
+
+.head .container-logout-icon {
+    padding-left: 1.5rem;
 }
 
 .head .container-logout-icon a,

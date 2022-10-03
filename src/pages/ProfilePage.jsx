@@ -1,7 +1,7 @@
 import { useOwnUser } from '../hooks/useOwnUser';
-import { PhotoUserList } from '../components/PhotoUserList'
+import { PhotoUserList } from '../components/PhotoUserList/PhotoUserList'
 import { Link } from 'react-router-dom'
-import { LoadDataWaiting } from '../components/LoadDataWaiting';
+import { Loading } from '../components/Loading/Loading';
 import { useState, useEffect } from 'react';
 
 export const ProfilePage = () => {
@@ -23,7 +23,7 @@ export const ProfilePage = () => {
         setLoading(false);
     }, [userPhotos]);
 
-    if (loading) return <LoadDataWaiting></LoadDataWaiting>
+    if (totalPhotos.length === 0 && loading) return <Loading></Loading>
     if (error) return <p>{error.message}</p>
 
     // función que actualiza la paginación

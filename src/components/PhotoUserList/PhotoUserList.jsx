@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Loading } from "../Loading/Loading"
 import './PhotoUserList.css'
 
 export const PhotoUserList = ({
@@ -11,13 +10,13 @@ export const PhotoUserList = ({
 }) => {
     return (
         <article className='photos_user'>
-            {loading === false ? (
+            {
                 totalPhotos.length ? (
                     <>
                         <ul className='photos_list'>
                             {totalPhotos.map(totalPhoto =>
-                                <Link className='photo-link-post' to={`/post/${totalPhoto.entryId}`}>
-                                    <li key={totalPhoto.photoId}>
+                                <Link key={totalPhoto.photoId} className='photo-link-post' to={`/post/${totalPhoto.entryId}`}>
+                                    <li>
                                         <img
                                             src={`${process.env.REACT_APP_SERVER}/${totalPhoto.photoName}`}
                                             alt={totalPhotos.photoId}>
@@ -27,11 +26,10 @@ export const PhotoUserList = ({
                             )}
                         </ul>
                         {pagination.page !== index?.lastPage && (
-                            <button onClick={handleClick}>See more results</button>
+                            loading ? <p>Loading...</p> : <button onClick={handleClick}>See more results</button>
                         )}
                     </>
-                ) : <p>No photos found</p>
-            ) : <Loading />
+                ) : null
             }
         </article>
     )

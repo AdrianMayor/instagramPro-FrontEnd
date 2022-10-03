@@ -67,7 +67,7 @@ export const RegisterPage = () => {
                 </fieldset>
                 <ButtonForm message={'Singup'} />
             </form>
-            {error ? <p className='message'>{error}</p> : <pc className='message'>{message}</pc>}
+            {error ? <p className='message'>{error}</p> : <p className='message'>{message}</p>}
         </section>
     )
 }
