@@ -10,6 +10,7 @@ export const PostCard = ({ post, singlePost, token }) => {
   const [isSinglePost, setSinglePost] = useState(false);
   const [newCommentToggle, setNewCommentToggle] = useState(false);
 
+  /* Componente que dependiendo de si es una vista individual o multiple cambia su comportamiento */
   useEffect(() => {
     setSinglePost(singlePost);
     setNewCommentToggle(singlePost);
@@ -73,8 +74,8 @@ export const PostCard = ({ post, singlePost, token }) => {
             />
           </div>
 
-          {newCommentToggle && (
-            <footer className="postCard__commentBox">
+          <footer className="postCard__commentBox">
+            {newCommentToggle && (
               <CommentBox
                 comments={post.comments}
                 idEntry={post.entryId}
@@ -82,8 +83,8 @@ export const PostCard = ({ post, singlePost, token }) => {
                 singlePost={isSinglePost}
                 token={token}
               />
-            </footer>
-          )}
+            )}
+          </footer>
         </article>
       </>
     )

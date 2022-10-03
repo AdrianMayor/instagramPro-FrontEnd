@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { services } from "../../services";
 import { AddPhotoIcon } from "../AddPhotoIcon/AddPhotoIcon";
 import { CleanPhotosIcon } from "../CleanPhotosIcon/CleanPhotosIcon";
@@ -15,30 +14,31 @@ export const NewPostBox = ({ totalPosts, setTotalPosts, token }) => {
   const hiddenInputFileImageD = useRef(null);
   const textArea = useRef(null);
 
+  /* Realizamos focus al text area de la caja de creacion de post una vez se renderiza */
   useEffect(() => {
-    textArea.current.focus()
-  }, [])
+    textArea.current.focus();
+  }, []);
 
+  /* Guardamos las imagenes que van llegando en un array */
   const handleOnChange = ({ value }) => {
     setImages([...images, value]);
   };
 
+  /* Para poder usar un boton personalizado y no el input por defecto de las imagenes creamos y escuchamos especificamente cada input */
   const handleClickImageA = () => {
     hiddenInputFileImageA.current.click();
   };
-
   const handleClickImageB = () => {
     hiddenInputFileImageB.current.click();
   };
-
   const handleClickImageC = () => {
     hiddenInputFileImageC.current.click();
   };
-
   const handleClickImageD = () => {
     hiddenInputFileImageD.current.click();
   };
 
+  /* Una vez realicemos submit con los datos del formulario relleno, procesamos la llamda POST a la API */
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -69,11 +69,13 @@ export const NewPostBox = ({ totalPosts, setTotalPosts, token }) => {
     }
   };
 
+  /* Handle destinado a limpiar las fotos en caso de que el usuario quiera reiniciar y volver a seleccionar las fotos a subir */
   const handleClearClick = (e) => {
     e.nativeEvent.path[3].reset();
     setImages([]);
   };
 
+  /* Componente cual finalidad es tener una caja donde introducir fotos y un texto descriptivo (opcional), para ello hemos querido modificar el input por defecto. Guardamos en un array las fotos (hasta un maximo de 4) y renderizamos en consecuencia, mostrando los botones necesarios y la previsualizacion de cada foto */
   return (
     <form onSubmit={handleSubmit} className="newPostBox">
       <div className="newPostBox__photos">

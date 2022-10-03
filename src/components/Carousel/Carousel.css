@@ -81,9 +81,9 @@
 .carousel__menu--positionDots--buttons {
   border-radius: 50%;
   border: none;
-  background-color: grey;
+  background-color: var(--color7);
 }
 
 .carousel__menu--positionDots--buttons.active {
-  background-color: white;
+  background-color: var(--color3);
 }
