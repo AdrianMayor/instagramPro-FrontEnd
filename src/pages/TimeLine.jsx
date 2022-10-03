@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Loading } from "../components/Loading/Loading";
 import { NewPostBox } from "../components/NewPostBox/NewPostBox";
 import { PostList } from "../components/PostList/PostList";
@@ -19,11 +19,11 @@ export const TimeLine = () => {
 
   useEffect(() => {
     if (keyword !== undefined) {
+      setTotalPosts([]);
       setPagination({ ...pagination, ...{ keyword: keyword } });
-      setTotalPosts([]);
     } else if (keyword === undefined && pagination.keyword !== "") {
-      setPagination({ ...pagination, ...{ keyword: "" } });
       setTotalPosts([]);
+      setPagination({ ...pagination, ...{ keyword: "" } });
     }
   }, [keyword]);
 
@@ -38,7 +38,7 @@ export const TimeLine = () => {
   const handleClick = () => {
     setPagination({ ...pagination, ...{ page: pagination.page + 1 } });
   };
-
+  console.log(totalPosts);
   return (
     <>
       {token && (
