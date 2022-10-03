@@ -13,6 +13,7 @@ export const CommentBox = ({
 }) => {
   const [postComments, setPostComments] = useState([]);
   const [commentIndex, setCommentIndex] = useState(null);
+  const [commentValue, setCommentValue] = useState("");
 
   useEffect(() => {
     singlePost ? handleClick() : setPostComments(comments);
@@ -42,7 +43,7 @@ export const CommentBox = ({
 
     const newComment = { comment: e.target.elements.newComment.value };
 
-    const data = await services.entries.sendCommentToEntry({
+    await services.entries.sendCommentToEntry({
       comment: newComment,
       idEntry,
       token,
@@ -75,9 +76,10 @@ export const CommentBox = ({
             type="text"
             name="newComment"
             placeholder="Share your thoughts"
+            onChange={(e) => setCommentValue(e.target.value)}
             autoFocus
           />
-          <button>
+          <button disabled={commentValue === "" && true}>
             <SendCommentIcon></SendCommentIcon>
           </button>
         </form>

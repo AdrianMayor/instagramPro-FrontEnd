@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
+import { useEffect, useRef, useState } from "react";
 import { services } from "../../services";
 import { AddPhotoIcon } from "../AddPhotoIcon/AddPhotoIcon";
 import { CleanPhotosIcon } from "../CleanPhotosIcon/CleanPhotosIcon";
@@ -41,8 +42,9 @@ export const NewPostBox = ({ totalPosts, setTotalPosts, token }) => {
 
       let post = {};
 
-      if (images.length < 1) throw new Error("Must exist at least one photo");
-
+      if (images.length < 1) {
+        throw new Error("Must exist at least one photo");
+      }
       if (description) {
         post = { description };
       }
@@ -196,7 +198,7 @@ export const NewPostBox = ({ totalPosts, setTotalPosts, token }) => {
 
         <span>{images.length}/4</span>
       </div>
-      <div className="newPostBox__description">
+      <div className={`newPostBox__description `}>
         <textarea
           maxLength={200}
           data-limit-row-lent="true"
@@ -206,7 +208,10 @@ export const NewPostBox = ({ totalPosts, setTotalPosts, token }) => {
           placeholder="Add words to your views!"
         />
       </div>
-      <button className="newPostBox__sendButton">
+      <button
+        disabled={!images.length >= 1 && true}
+        className="newPostBox__sendButton"
+      >
         <SendPostIcon></SendPostIcon>
       </button>
     </form>

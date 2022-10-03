@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { Loading } from "../components/Loading/Loading";
 import { NewPostBox } from "../components/NewPostBox/NewPostBox";
 import { PostList } from "../components/PostList/PostList";
-import { SearchBar } from "../components/SearchBar/SearchBar";
 import { AuthContext } from "../context/authContext";
 import { usePosts } from "../hooks/usePosts";
 
@@ -42,7 +41,6 @@ export const TimeLine = () => {
 
   return (
     <>
-      <SearchBar />
       {token && (
         <NewPostBox
           totalPosts={totalPosts}
