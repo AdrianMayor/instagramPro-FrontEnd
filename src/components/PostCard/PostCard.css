@@ -5,8 +5,8 @@
   max-width: 700px;
   /* min-width: 200px; */
   border-radius: 10px;
-  color: white;
-  box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.753);
+  color: var(--color1);
+  box-shadow: 5px 5px 8px var(--color7);
 }
 
 .postCard__mainContent--list {
@@ -29,9 +29,9 @@
 }
 
 .postCard__description::-webkit-scrollbar-track {
-  background: #888;
+  background: var(--color7);
 }
 
 .postCard__description::-webkit-scrollbar-thumb {
-  background: #f1f1f1;
+  background: var(--color6);
 }

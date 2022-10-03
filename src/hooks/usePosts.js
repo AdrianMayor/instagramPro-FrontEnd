@@ -7,7 +7,6 @@ export const usePosts = () => {
   const [index, setIndex] = useState({ lastPage: 1 });
   const [keys, setKeys] = useState({ keyword: "", limit: 0, page: 0 });
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
   const { token } = useContext(AuthContext);
 
   useEffect(() => {
@@ -27,7 +26,7 @@ export const usePosts = () => {
           setIndex(data.data.index);
         }
       } catch (error) {
-        setError(error.message);
+        console.error(error.message);
       } finally {
         setIsLoading(false);
       }
@@ -39,10 +38,6 @@ export const usePosts = () => {
 
   return {
     posts,
-    setPosts,
-    index,
-    setIndex,
-    error,
     isLoading,
     setKeys,
     keys,

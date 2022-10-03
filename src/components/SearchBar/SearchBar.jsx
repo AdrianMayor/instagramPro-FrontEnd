@@ -1,15 +1,18 @@
-import './SearchBar.css';
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import searchicon from '../../assets/icons/search-icon.png'
+import searchicon from "../../assets/icons/search-icon.png";
+import { useLocation } from "react-router-dom";
+import "./SearchBar.css";
 
 export const SearchBar = () => {
   const [keyword, setKeyword] = useState("");
-  const { keyword: keywordSearched } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
-    if (keywordSearched === undefined) setKeyword("");
-  }, [keywordSearched]);
+    if (!location.pathname.includes("search")) {
+      setKeyword("");
+    }
+  }, [location.pathname]);
 
   return (
     <form className="searcher">
@@ -21,9 +24,13 @@ export const SearchBar = () => {
         value={keyword}
         placeholder="Seach the views! "
       ></input>
-      <Link to={`/${keyword}`}>
+      <Link to={`/search/${keyword}`}>
         <button className="searcher-button">
-          <img className='searcher-icon' src={searchicon} alt='serarch-icon'></img>
+          <img
+            className="searcher-icon"
+            src={searchicon}
+            alt="serarch-icon"
+          ></img>
         </button>
       </Link>
     </form>
