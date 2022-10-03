@@ -1,4 +1,4 @@
-import './style.css';
+import './HomeLink.css';
 import postIcon from '../../assets/icons/home-icon.png'
 
 export const HomeLink = () => {

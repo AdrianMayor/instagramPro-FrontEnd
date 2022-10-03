@@ -1,10 +1,10 @@
-import './style.css';
+import './Authlinks.css';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext';
 import { useContext } from 'react';
-import { PhotoProfile } from '../PhotoProfile';
+import { PhotoProfile } from '../PhotoProfile/PhotoProfile';
 import { LogoutIcon } from '../LogoutIcon/LogoutIcon';
-import { SearchBar } from '../../components/SearchBar/SearchBar';
+import { SearchBar } from '../SearchBar/SearchBar';
 import { HomeLink } from '../HomeLink/HomeLink';
 
 

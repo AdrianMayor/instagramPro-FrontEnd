@@ -1,5 +1,5 @@
-import { isDisabled } from "@testing-library/user-event/dist/utils";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
+import { useRef, useState } from "react";
 import { services } from "../../services";
 import { AddPhotoIcon } from "../AddPhotoIcon/AddPhotoIcon";
 import { CleanPhotosIcon } from "../CleanPhotosIcon/CleanPhotosIcon";
@@ -13,6 +13,11 @@ export const NewPostBox = ({ totalPosts, setTotalPosts, token }) => {
   const hiddenInputFileImageB = useRef(null);
   const hiddenInputFileImageC = useRef(null);
   const hiddenInputFileImageD = useRef(null);
+  const textArea = useRef(null);
+
+  useEffect(() => {
+    textArea.current.focus()
+  }, [])
 
   const handleOnChange = ({ value }) => {
     setImages([...images, value]);
@@ -205,6 +210,7 @@ export const NewPostBox = ({ totalPosts, setTotalPosts, token }) => {
           rows={2}
           cols={40}
           name="description"
+          ref={textArea}
           placeholder="Add words to your views!"
         />
       </div>

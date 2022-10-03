@@ -1,9 +1,11 @@
-import { AuthLinks } from '../components/AuthLinks';
-import { Link } from 'react-router-dom';
+import { AuthLinks } from '../components/AuthLinks/Authlinks';
 import { useState } from 'react';
 import './Header.css';
 
 export const Header = () => {
+
+
+
 
     const [link1, setLink1] = useState('select-disabled');
     const [link2, setLink2] = useState('select-disabled');
@@ -11,6 +13,10 @@ export const Header = () => {
     const handleClickRemove = () => {
         setLink1('select-disabled');
         setLink2('select-disabled');
+
+
+        window.scrollTo(0, 0)
+
     }
 
     const handleClicker = (e) => {
