@@ -6,10 +6,10 @@
 
 .postCard__header--username {
   position: absolute;
-  top: 20px;
+  top: 10px;
   left: 65px;
   font-weight: bold;
-  color: white;
+  color: var(--color1);
 }
 
 .postCard__header--profilePic {

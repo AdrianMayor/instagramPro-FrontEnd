@@ -15,7 +15,7 @@
 .postCard__commentBox form textarea {
   background-color: transparent;
   border: none;
-  color: white;
+  color: var(--color1);
 }
 
 .postCard__commentBox form textarea::placeholder {
@@ -33,6 +33,9 @@
 
 .postCard__commentBox button {
   cursor: pointer;
+  padding: 0.5rem;
+  background-color: var(--color7);
+  border-radius: 10px;
 }
 
 .postCard__commentBox--moreButtons {
@@ -44,7 +47,7 @@
   background-color: transparent;
   font-style: italic;
   border: none;
-  color: white;
+  color: var(--color1);
   padding: 0.5rem;
 }
 
