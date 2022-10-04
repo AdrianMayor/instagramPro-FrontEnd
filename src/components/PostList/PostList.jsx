@@ -1,3 +1,4 @@
+import { Loading } from "../Loading/Loading";
 import { PostCard } from "../PostCard/PostCard";
 import "./PostList.css";
 
@@ -8,7 +9,7 @@ export const PostList = ({
   handleClick,
   token,
 }) => {
-  return (
+  return totalPosts.length >= 1 ? (
     <section className="timeline__posts">
       <ul>
         {totalPosts.length >= 1 &&
@@ -25,5 +26,7 @@ export const PostList = ({
         </button>
       )}
     </section>
+  ) : (
+    <Loading />
   );
 };

@@ -20,4 +20,9 @@
 
 .postCard__likeAndCommentMenu button {
   cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.postCard__likeAndCommentMenu button:hover {
+  transform: scale(1.5);
 }
