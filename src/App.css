@@ -201,6 +201,14 @@ main .edit_user .form-field input {
   height: 60px;
 }
 
+.edit_user .form-field-avatar .label-avatar {
+  color: var(--color4);
+}
+
+.edit_user .form-field-avatar .avatar {
+  color: var(--color7)
+}
+
 .form-field {
   color: var(--color4);
 }
