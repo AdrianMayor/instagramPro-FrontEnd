@@ -4,17 +4,12 @@ import './Header.css';
 
 export const Header = () => {
 
-
-
-
     const [link1, setLink1] = useState('select-disabled');
     const [link2, setLink2] = useState('select-disabled');
 
     const handleClickRemove = () => {
         setLink1('select-disabled');
         setLink2('select-disabled');
-
-
         window.scrollTo(0, 0)
 
     }

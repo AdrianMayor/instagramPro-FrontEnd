@@ -1,7 +1,7 @@
 import './ButtonForm.css';
 
-export const ButtonForm = ({ message }) => {
+export const ButtonForm = ({ message, handleClick }) => {
     return (
-        <button className="button-form">{message}</button>
+        <button onClick={handleClick} className="button-form">{message}</button>
     )
 }

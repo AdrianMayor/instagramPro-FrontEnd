@@ -16,3 +16,13 @@
     width: 150px;
     justify-self: center;
 }
+
+.photos_user .button-form {
+    margin: 1rem;
+    max-width: 150px;
+}
+
+.photos_user {
+    display: flex;
+    flex-direction: column;
+}
