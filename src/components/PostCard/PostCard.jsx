@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
 import { CommentBox } from "../CommentBox/CommentBox";
 import { ImagesBox } from "../ImagesBox/ImagesBox";
 import { LikeAndCommentMenu } from "../LikeAndCommentMenu/LikeAndCommentMenu";
@@ -9,6 +10,7 @@ import "./PostCard.css";
 export const PostCard = ({ post, singlePost, token }) => {
   const [isSinglePost, setSinglePost] = useState(false);
   const [newCommentToggle, setNewCommentToggle] = useState(false);
+  const nodeRef = useRef(null);
 
   /* Componente que dependiendo de si es una vista individual o multiple cambia su comportamiento */
   useEffect(() => {
@@ -74,8 +76,14 @@ export const PostCard = ({ post, singlePost, token }) => {
             />
           </div>
 
-          <footer className="postCard__commentBox">
-            {newCommentToggle && (
+          <CSSTransition
+            in={newCommentToggle}
+            nodeRef={nodeRef}
+            classNames="postCard__commentTransition"
+            timeout={300}
+            unmountOnExit
+          >
+            <footer ref={nodeRef} className="postCard__commentBox">
               <CommentBox
                 comments={post.comments}
                 idEntry={post.entryId}
@@ -83,8 +91,8 @@ export const PostCard = ({ post, singlePost, token }) => {
                 singlePost={isSinglePost}
                 token={token}
               />
-            )}
-          </footer>
+            </footer>
+          </CSSTransition>
         </article>
       </>
     )

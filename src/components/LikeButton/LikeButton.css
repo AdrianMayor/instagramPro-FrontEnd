@@ -7,7 +7,7 @@
 }
 
 .postCard__likeButton svg {
-  fill: white;
+  fill: var(--color4);
 }
 
 .likeButtonLiked {
@@ -18,12 +18,12 @@
 
 @keyframes color {
   from {
-    fill: white;
+    fill: var(--color4);
     fill-opacity: 0;
   }
 
   to {
-    fill: red;
+    fill: var(--color3);
     fill-opacity: 1;
   }
 }

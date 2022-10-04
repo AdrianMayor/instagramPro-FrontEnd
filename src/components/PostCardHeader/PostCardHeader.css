@@ -6,7 +6,7 @@
 
 .postCard__header--username {
   position: absolute;
-  top: 20px;
+  top: 10px;
   left: 65px;
   font-weight: bold;
   color: var(--color1);
