@@ -80,7 +80,7 @@
 .newPostBox__picPreview {
   border-radius: 10px;
   transform: scale(0.8);
-  border: 1px rgba(255, 255, 255, 0.26) solid;
+  border: 1px var(--color5) solid;
 }
 
 @media (max-width: 620px) {
