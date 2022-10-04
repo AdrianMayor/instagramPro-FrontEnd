@@ -7,7 +7,7 @@
 .postCard__commentBox--userName {
   font-weight: bold;
   display: inline;
-  color: white;
+  color: var(--color1);
 }
 
 .postCard__commentBox--date {

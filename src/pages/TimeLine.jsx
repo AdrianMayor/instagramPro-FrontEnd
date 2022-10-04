@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { Loading } from "../components/Loading/Loading";
 import { NewPostBox } from "../components/NewPostBox/NewPostBox";
 import { PostList } from "../components/PostList/PostList";
-import { SearchBar } from "../components/SearchBar/SearchBar";
 import { AuthContext } from "../context/authContext";
 import { usePosts } from "../hooks/usePosts";
 
@@ -18,31 +17,34 @@ export const TimeLine = () => {
     page: 1,
   });
 
+  /* Dependiendo de si llega o no keyword, tiene un comportamiento y otro, estableciendo en la paginacion de ser necesario la palabra a buscar */
   useEffect(() => {
     if (keyword !== undefined) {
+      setTotalPosts([]);
       setPagination({ ...pagination, ...{ keyword: keyword } });
-      setTotalPosts([]);
     } else if (keyword === undefined && pagination.keyword !== "") {
-      setPagination({ ...pagination, ...{ keyword: "" } });
       setTotalPosts([]);
+      setPagination({ ...pagination, ...{ keyword: "" } });
     }
   }, [keyword]);
 
+  /* Una vez hay un cambio en la paginacion, enviamos dichos cambios al custom hook */
   useEffect(() => {
     setKeys(pagination);
   }, [pagination]);
 
+  /* Realizamos la union de los posts ya renderizados con los nuevos que van llegando */
   useEffect(() => {
     setTotalPosts([...totalPosts, ...posts]);
   }, [posts]);
 
+  /* Con cada click establecemos la siguiente pagina a la que hacer llamada a la API */
   const handleClick = () => {
     setPagination({ ...pagination, ...{ page: pagination.page + 1 } });
   };
 
   return (
     <>
-      <SearchBar />
       {token && (
         <NewPostBox
           totalPosts={totalPosts}

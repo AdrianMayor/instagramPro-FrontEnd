@@ -13,7 +13,9 @@ export const CommentBox = ({
 }) => {
   const [postComments, setPostComments] = useState([]);
   const [commentIndex, setCommentIndex] = useState(null);
+  const [commentValue, setCommentValue] = useState("");
 
+  /* Si es la visualizacion de un unico post se muestran 10 comentarios, y en caso de formar parte del timeline se muestan primero los 3 primeros */
   useEffect(() => {
     singlePost ? handleClick() : setPostComments(comments);
   }, [comments, singlePost]);
@@ -37,12 +39,13 @@ export const CommentBox = ({
     getComments();
   };
 
+  /* Si un usuario crea un comentario, lo introducimos mediante estado para que se visualice sin renderizado y tambien lo registramos llamando a la API */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newComment = { comment: e.target.elements.newComment.value };
 
-    const data = await services.entries.sendCommentToEntry({
+    await services.entries.sendCommentToEntry({
       comment: newComment,
       idEntry,
       token,
@@ -75,9 +78,10 @@ export const CommentBox = ({
             type="text"
             name="newComment"
             placeholder="Share your thoughts"
+            onChange={(e) => setCommentValue(e.target.value)}
             autoFocus
           />
-          <button>
+          <button disabled={commentValue === "" && true}>
             <SendCommentIcon></SendCommentIcon>
           </button>
         </form>
