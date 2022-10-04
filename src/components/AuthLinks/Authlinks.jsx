@@ -6,11 +6,12 @@ import { PhotoProfile } from '../PhotoProfile/PhotoProfile';
 import { LogoutIcon } from '../LogoutIcon/LogoutIcon';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { HomeLink } from '../HomeLink/HomeLink';
+import { AddPostIcon } from '../Add-post-icon/Add-post-icon.jsx';
 
 
 export const AuthLinks = ({ link1, link2, handleClicker, handleClickRemove }) => {
 
-    const { user, logout } = useContext(AuthContext);
+    const { user, logout, toggleAddPost, setToggleAddPost } = useContext(AuthContext);
 
     return (
         <>
@@ -22,6 +23,13 @@ export const AuthLinks = ({ link1, link2, handleClicker, handleClickRemove }) =>
                             <p>
                                 {user.username}
                             </p>
+                        </li>
+                        <li className='container-add-post'>
+                            <Link to='/'>
+                                <button onClick={() => setToggleAddPost(!toggleAddPost)} className='add-post-button'>
+                                    <AddPostIcon />
+                                </button>
+                            </Link>
                         </li>
                         <li className='container-logout-icon'>
                             <Link to='/login' onClick={handleClicker}>
