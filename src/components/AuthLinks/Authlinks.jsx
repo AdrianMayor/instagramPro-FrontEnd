@@ -8,6 +8,13 @@ import { SearchBar } from '../SearchBar/SearchBar';
 import { HomeLink } from '../HomeLink/HomeLink';
 import { AddPostIcon } from '../Add-post-icon/Add-post-icon.jsx';
 
+export const AuthLinks = ({
+  link1,
+  link2,
+  handleClicker,
+  handleClickRemove,
+}) => {
+  const { user, logout } = useContext(AuthContext);
 
 export const AuthLinks = ({ link1, link2, handleClicker, handleClickRemove }) => {
 
@@ -72,6 +79,6 @@ export const AuthLinks = ({ link1, link2, handleClicker, handleClickRemove }) =>
             </nav>
             <SearchBar />
         </>
-
     )
 }
+

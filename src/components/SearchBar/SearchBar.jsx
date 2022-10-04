@@ -21,7 +21,7 @@ export const SearchBar = () => {
         className="searcher-term"
         onChange={(e) => setKeyword(e.target.value)}
         value={keyword}
-        placeholder="Seach the views! "
+        placeholder="Search the views! "
       ></input>
       <Link to={`/search/${keyword}`}>
         <button className="searcher-button">
