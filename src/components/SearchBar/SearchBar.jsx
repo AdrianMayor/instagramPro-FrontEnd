@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import searchicon from "../../assets/icons/search-icon.png";
-import { useLocation } from "react-router-dom";
 import "./SearchBar.css";
 
 export const SearchBar = () => {

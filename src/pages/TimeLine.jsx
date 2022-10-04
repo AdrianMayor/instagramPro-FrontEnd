@@ -53,13 +53,17 @@ export const TimeLine = () => {
         />
       )}
 
-      <PostList
-        totalPosts={totalPosts}
-        pagination={pagination}
-        index={index}
-        handleClick={handleClick}
-        token={token}
-      />
+      {index === "No Results" ? (
+        <p>No Results</p>
+      ) : (
+        <PostList
+          totalPosts={totalPosts}
+          pagination={pagination}
+          index={index}
+          handleClick={handleClick}
+          token={token}
+        />
+      )}
       {isLoading && <Loading></Loading>}
     </>
   );

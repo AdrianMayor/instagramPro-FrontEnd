@@ -15,7 +15,8 @@ export const usePosts = () => {
         setIsLoading(true);
 
         let data;
-        if (keys.page <= index.lastPage) {
+
+        if (keys.page <= index.lastPage || index === "No Results") {
           data = await services.entries.listEntries({
             ...keys,
             ...{ token: token },
