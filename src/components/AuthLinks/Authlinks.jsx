@@ -37,8 +37,8 @@ export const AuthLinks = ({ link1, link2, handleClicker, handleClickRemove }) =>
                         </li>
                     </ul>
                 ) : (
-                    <ul className='head'>
-                        <li>
+                    <ul className='head-noaccount'>
+                        <li className='container-register-link'>
                             <Link to='/register' className='register-link'>
                                 <p id='register' onClick={handleClicker} className={link1}>
                                     Singup
@@ -46,12 +46,12 @@ export const AuthLinks = ({ link1, link2, handleClicker, handleClickRemove }) =>
                                 </p>
                             </Link>
                         </li>
-                        <li className='container-home-icon'>
+                        <li className='container-home-icon-noaccount'>
                             <Link to='/' onClick={handleClickRemove}>
                                 <HomeLink />
                             </Link>
                         </li>
-                        <li>
+                        <li className='container-login-link'>
                             <Link to='/login' className='login-link'>
                                 <p id='login' onClick={handleClicker} className={link2}>
                                     Login

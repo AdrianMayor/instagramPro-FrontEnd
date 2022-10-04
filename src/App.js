@@ -6,12 +6,14 @@ import { Main } from "./layout/Main";
 
 function App() {
   return (
-    <div className="App">
-      <AuthProviderComponent>
-        <Header></Header>
-        <Main></Main>
-      </AuthProviderComponent>
-      <Footer></Footer>
+    <div className="background-screen">
+      <div className="App">
+        <AuthProviderComponent>
+          <Header></Header>
+          <Main></Main>
+        </AuthProviderComponent>
+        <Footer></Footer>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { ButtonForm } from '../ButtonForm/ButtonForm';
 import './PhotoUserList.css'
 
 export const PhotoUserList = ({
@@ -26,7 +27,7 @@ export const PhotoUserList = ({
                             )}
                         </ul>
                         {pagination.page !== index?.lastPage && (
-                            loading ? <p>Loading...</p> : <button onClick={handleClick}>See more results</button>
+                            loading ? <p>Loading...</p> : <ButtonForm message={'See more results'} handleClick={handleClick}></ButtonForm>
                         )}
                     </>
                 ) : null

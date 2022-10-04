@@ -210,7 +210,7 @@ main .edit_user .form-field input {
 .edit_user a {
   text-decoration: none;
   font-size: 0.8rem;
-  color: var(--color3);
+  color: var(--color6);
 }
 
 .login a:hover,
@@ -221,7 +221,6 @@ main .edit_user .form-field input {
 
 main .photo-container {
   width: 100%;
-
 }
 
 main .photo-container img {
@@ -235,4 +234,31 @@ main .photo-container img {
   text-align: center;
   font-weight: 200;
   font-size: 0.9rem;
+}
+
+@media (min-width: 700px) {
+  .App {
+    width: 60%;
+  }
+
+  .background-screen {
+    background-color: var(--color5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  main .own_profile .profile-data a {
+    justify-self: end;
+    margin-left: 2rem;
+  }
+
+  main .own_profile .profile-data {
+    align-self: baseline;
+  }
+
+  main .own_profile {
+    display: flex;
+    flex-direction: column;
+  }
 }
