@@ -7,7 +7,7 @@ import { AuthContext } from "../context/authContext";
 import { usePosts } from "../hooks/usePosts";
 
 export const TimeLine = () => {
-  const { token } = useContext(AuthContext);
+  const { token, toggleAddPost } = useContext(AuthContext);
   const { keyword } = useParams();
   const { posts, index, setKeys, isLoading } = usePosts();
   const [totalPosts, setTotalPosts] = useState([]);
@@ -45,7 +45,7 @@ export const TimeLine = () => {
 
   return (
     <>
-      {token && (
+      {token && toggleAddPost && (
         <NewPostBox
           totalPosts={totalPosts}
           setTotalPosts={setTotalPosts}
@@ -54,7 +54,7 @@ export const TimeLine = () => {
       )}
 
       {index === "No Results" ? (
-        <p>No Results</p>
+        <p className="message">No Results</p>
       ) : (
         <PostList
           totalPosts={totalPosts}

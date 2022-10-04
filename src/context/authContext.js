@@ -8,6 +8,7 @@ export const AuthProviderComponent = ({children}) => {
     const [ token, setToken ] = useState(localStorage.getItem('token'));
     const [ user, setUser ] = useState(null);
     const [ keys, setKeys ] = useState({limit:10, page:1});
+    const [toggleAddPost, setToggleAddPost] = useState(false);
 
     const logout = () => {
         setUser(null)
@@ -52,7 +53,9 @@ export const AuthProviderComponent = ({children}) => {
                     setUser, 
                     token, 
                     login, 
-                    logout
+                    logout,
+                    toggleAddPost,
+                    setToggleAddPost
                 }}>
                 {children}
             </AuthContext.Provider>;

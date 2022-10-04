@@ -8,12 +8,12 @@ import { SinglePost } from "../pages/SinglePost";
 import { TimeLine } from "../pages/TimeLine";
 import "./Main.css";
 
-export const Main = () => {
+export const Main = ({ toogleAddPost }) => {
   return (
     <main>
       <Routes>
-        <Route path="/" element={<TimeLine />} />
-        <Route path="/search/:keyword" element={<TimeLine />} replace />
+        <Route path="/" element={<TimeLine toogleAddPost={toogleAddPost} />} />
+        <Route path="/search/:keyword" element={<TimeLine toogleAddPost={toogleAddPost} />} replace />
         <Route path="/post/:entryId" element={<SinglePost />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
