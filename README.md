@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# InstagramPro - PortfolioProject // FrontEnd
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+App inspirada en Instagram.
 
-## Available Scripts
+Consumir la API creada en este mismo proyecto y dar vision a las publicaciones de los usuarios.
 
-In the project directory, you can run:
+## Dependencias
 
-### `npm start`
+- axios
+- React Router
+- React Swipeable
+- React Transition Group
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Rutas
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Estas se encuentran alojadas en el fichero 'Main.jsx' dentro de la carpeta 'layout'.
 
-### `npm test`
+- Home de la pagina, llevaría al Timeline donde se visualizarian todos los post de todos los usuarios.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```jsx
+<Route path="/" element={<TimeLine toogleAddPost={toogleAddPost} />} />
+```
 
-### `npm run build`
+- Busqueda de una palabra o cadena de texto entre los post.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```jsx
+<Route
+  path="/search/:keyword"
+  element={<TimeLine toogleAddPost={toogleAddPost} />}
+  replace
+/>
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Visualizacion de un post en particular
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```jsx
+<Route path="/post/:entryId" element={<SinglePost />} />
+```
 
-### `npm run eject`
+- Login de usuario
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```jsx
+<Route path="/login" element={<LoginPage />} />
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Registro de usuario
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```jsx
+<Route path="/register" element={<RegisterPage />} />
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Edición de usuario
 
-## Learn More
+```jsx
+<Route path="/edit" element={<EditUserPage />} />
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Visualización de perfil propio de usuario que ha realizado login
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```jsx
+<Route path="/users" element={<ProfilePage />} />
+```
 
-### Code Splitting
+- Visualizacion de perfil ajeno
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```jsx
+<Route path="/users/:id" element={<ProfileUserPage />} />
+```
 
-### Analyzing the Bundle Size
+## Iniciar la aplicación
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Lanzar la parte del backend del proyecto. => <https://github.com/AdrianMayor/instagramPro-BackEnd>
+2. Establecer la ruta del backend creando el fichero '.env' siguiendo de ejemplo el fichero '.env.example'
